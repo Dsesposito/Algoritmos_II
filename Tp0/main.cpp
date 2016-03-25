@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     calculate(result,inv,1);
     
     //Imprimo la serie invertida
-    cout << " Inverso " << endl << inv << endl;
+    cout << " Inversoo " << endl << inv << endl;
     
     return 0;
 }
