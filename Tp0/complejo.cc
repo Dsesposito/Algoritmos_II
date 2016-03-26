@@ -155,8 +155,8 @@ operator/(complejo const &c, double f)
 
 complejo const 
 operator^(complejo const &c , int power){
-    //Este operador solo sirve para exponentes naturales incluido el cero
-    if(power < 0 || power != floor(power) ){
+    //Este operador solo sirve para exponentes no racionales
+    if(power != floor(power) ){
         cout << "Exponente menor a cero o racional" << endl;
         abort();
     }
@@ -171,10 +171,15 @@ operator^(complejo const &c , int power){
     
     double module = c.abs();
     double phase = c.phase();
+    if(power < 0){
+        module = 1/module;
+    }
+
     for(int i = 0; i < power - 1 ; i++){
         module = module*module;
     }
     phase = phase*power;
+    
     return complejo::fromPolarToRectangular(module,phase);
 }
 

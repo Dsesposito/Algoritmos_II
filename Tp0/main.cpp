@@ -15,16 +15,23 @@
 using namespace std;
 
 
-void calculate(const vector<complejo> & data , vector<complejo> & result , int expSign){
+void calculate(const vector<complejo> & data , vector<complejo> & result , string algorithm){
     int N = data.length();
-    double re = cos(expSign*2*M_PI/N);
-    double im = sin(expSign*2*M_PI/N);
+    double re = cos(2*M_PI/N);
+    double im = sin(2*M_PI/N);
+    int sign = 1;
+    if(algorithm == "idft"){
+        sign = -1;
+    }
     for(int i = 0 ; i < N ; i++){
         complejo sum = 0;
         for(int j = 0 ; j < N ; j++){
             complejo aux(re,im);
-            aux = aux^(j*i);
+            aux = aux^(sign*j*i);
             sum = sum + (data[j]*aux);
+        }
+        if(algorithm == "idft"){
+            sum = sum / N;
         }
         result.pushFron(sum);
     }
@@ -45,7 +52,7 @@ int main(int argc, char** argv) {
     
     //Calculo la serie
     vector<complejo> result = vector<complejo>(); ;
-    calculate(data,result,-1);
+    calculate(data,result,"dft");
     
     //Imprimo los datos
     cout << " Datos " << endl << data << endl;
@@ -54,7 +61,7 @@ int main(int argc, char** argv) {
     cout << " Resultado " << endl << result << endl;
     
     vector<complejo> inv = vector<complejo>();
-    calculate(result,inv,1);
+    calculate(result,inv,"idft");
     
     //Imprimo la serie invertida
     cout << " Inverso " << endl << inv << endl;
