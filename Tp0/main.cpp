@@ -26,7 +26,7 @@ void calculate(const vector<complejo> & data , vector<complejo> & result , int e
             aux = aux^(j*i);
             sum = sum + (data[j]*aux);
         }
-        result[i] = sum;
+        result.pushFron(sum);
     }
 } 
 
@@ -34,14 +34,17 @@ void calculate(const vector<complejo> & data , vector<complejo> & result , int e
 int main(int argc, char** argv) {
     
     //Creo un vector que almacenará la información leída
-    vector<complejo> data(4);
+    vector<complejo> data = vector<complejo>();
     
     //Leo la información del archivo
     ifstream dataFile("Data_red.csv");
     dataFile >> data;
+
+    //Imprimo los datos
+    cout << " Datos " << endl << data << endl;
     
     //Calculo la serie
-    vector<complejo> result(4);
+    vector<complejo> result = vector<complejo>(); ;
     calculate(data,result,-1);
     
     //Imprimo los datos
@@ -50,12 +53,11 @@ int main(int argc, char** argv) {
     //Imprimo la serie
     cout << " Resultado " << endl << result << endl;
     
-    vector<complejo> inv(4);
+    vector<complejo> inv = vector<complejo>();
     calculate(result,inv,1);
     
     //Imprimo la serie invertida
-    cout << " Inversoo " << endl << inv << endl;
-    
+    cout << " Inverso " << endl << inv << endl;
     return 0;
 }
 

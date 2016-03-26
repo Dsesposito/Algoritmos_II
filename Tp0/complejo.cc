@@ -156,8 +156,9 @@ operator/(complejo const &c, double f)
 complejo const 
 operator^(complejo const &c , int power){
     //Este operador solo sirve para exponentes naturales incluido el cero
-    if(power < 0 || power % 2 != 0 ){
-        //Termino el programa
+    if(power < 0 || power != floor(power) ){
+        cout << "Exponente menor a cero o racional" << endl;
+        abort();
     }
     
     if(power == 0){

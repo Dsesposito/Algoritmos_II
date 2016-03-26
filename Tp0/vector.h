@@ -20,21 +20,26 @@ class vector{
     private:
         
         int size;
+        int memSize;
         T* pv;
         
     public:
         
         vector(){
-    
+            this->pv = NULL;
+            this->size = 0;
+            this->memSize = 0;
         }
 
         vector(int size_){
             this->pv = new T[size_];
             this->size = size_;
+            this->memSize = size_;
         }
 
         vector(const vector<T> & cv){
             this->size = cv.size ;
+            this->memSize = cv.memSize;
             this->pv = new T[ size ];
             for ( int i = 0; i < this->size; i++ ){
                 this->pv[ i ] = cv.pv[ i ];
@@ -51,6 +56,26 @@ class vector{
             return this->size;
         }
 
+        void pushFron(T & elem){
+            if(this->size == 0){
+                this->pv = new T[2];
+                this->memSize = 2;
+            }
+            else{
+                if(this->memSize == this->size){
+                    T* aux = this->pv;
+                    this->pv = new T[this->memSize*2];
+                    this->memSize = this->memSize*2;
+                    for(int i = 0 ; i < this->size ; i++){
+                        this->pv[i] = aux[i];
+                    }
+                    delete[] aux;
+                }
+            }
+            this->pv[this->size] = elem;
+            this->size++;
+        }
+        
         vector<T> & operator=(const vector<T> & rigth) {
             if (&rigth != this) 
             { 
@@ -89,16 +114,27 @@ class vector{
         }
 
 
-        const T & operator[](int subscript) const {
-            return this->pv[subscript];
+        const T & operator[](int index) const {
+            if(index >= this->size){
+                cout << "Indice incorrecto en const operator[]" << endl;
+                abort();
+            }
+            return this->pv[index];
         }
         
-        T & operator[](int subscript) {
-            return this->pv[subscript];
+        T & operator[](int index) {
+            if(index >= this->size){
+                cout << "Indice incorrecto en operator[]" << endl;
+                abort();
+            }
+            return this->pv[index];
         }
         
         friend std::istream &operator>>(std::istream & is,vector<T> & vector){
-            for(int i = 0 ; is >> vector[i] ; i++);
+            T aux;
+            for(int i = 0 ; is >> aux ; i++){
+                vector.pushFron(aux);
+            }
             return is;
         }
 
