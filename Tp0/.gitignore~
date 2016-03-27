@@ -4,4 +4,3 @@
 /build
 .dep.inc
 *.exe
-Makefile
