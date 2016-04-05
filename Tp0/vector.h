@@ -116,7 +116,7 @@ class vector{
 
         const T & operator[](int index) const {
             if(index >= this->size){
-                cout << "Indice incorrecto en const operator[]" << endl;
+                cerr << "Indice incorrecto en const operator[]" << endl;
                 abort();
             }
             return this->pv[index];

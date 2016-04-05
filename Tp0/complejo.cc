@@ -157,7 +157,7 @@ complejo const
 operator^(complejo const &c , int power){
     //Este operador solo sirve para exponentes no racionales
     if(power != floor(power) ){
-        cout << "Exponente menor a cero o racional" << endl;
+        cerr << "Exponente menor a cero o racional" << endl;
         abort();
     }
     
@@ -203,7 +203,7 @@ operator<<(ostream &os, const complejo &c)
 {
 	return os << "(" 
 	          << c.re_
-	          << ", " 
+	          << "," 
 	          << c.im_
 	          << ")";
 }
