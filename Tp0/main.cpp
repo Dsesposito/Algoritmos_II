@@ -6,39 +6,13 @@
  */
 
 #include <cstdlib>
-#include "vector.h"
-#include "complejo.cc"
+#include "DFTcalculator.cc"
 #include <fstream>
 #include <iostream>
 #include <cmath>
 #include <string>
 
 using namespace std;
-
-#define M_PI  3.14159
-
-
-void calculate(const vector<complejo> & data , vector<complejo> & result , string algorithm){
-    int N = data.length();
-    double re = cos(2*M_PI/N);
-    double im = sin(2*M_PI/N);
-    int sign = 1;
-    if(algorithm == "idft"){
-        sign = -1;
-    }
-    for(int i = 0 ; i < N ; i++){
-        complejo sum = 0;
-        for(int j = 0 ; j < N ; j++){
-            complejo aux(re,im);
-            aux = aux^(sign*j*i);
-            sum = sum + (data[j]*aux);
-        }
-        if(algorithm == "idft"){
-            sum = sum / N;
-        }
-        result.pushFron(sum);
-    }
-} 
 
 
 int main(int argc, char** argv) {
@@ -57,7 +31,8 @@ int main(int argc, char** argv) {
     
     //Calculo la serie
     vector<complejo> result = vector<complejo>(); ;
-    calculate(data,result,"dft");
+    DFTcalculator dftcalculator = DFTcalculator();
+	dftcalculator.calculateDFT(data,result);
     
     //Imprimo los datos
     cout << " Datos " << endl << data << endl;
@@ -66,7 +41,7 @@ int main(int argc, char** argv) {
     cout << " Resultado " << endl << result << endl;
     
     vector<complejo> inv = vector<complejo>();
-    calculate(result,inv,"idft");
+    dftcalculator.calculateIDFT(result,inv);
     
     //Imprimo la serie invertida
     cout << " Inverso " << endl << inv << endl;
