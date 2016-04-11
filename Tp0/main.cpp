@@ -7,12 +7,15 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complejo.h"
+#include "complejo.cc"
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <string>
 
 using namespace std;
+
+#define M_PI  3.14159
 
 
 void calculate(const vector<complejo> & data , vector<complejo> & result , string algorithm){
@@ -40,6 +43,8 @@ void calculate(const vector<complejo> & data , vector<complejo> & result , strin
 
 int main(int argc, char** argv) {
     
+	cout << "TP0" << endl;
+
     //Creo un vector que almacenará la información leída
     vector<complejo> data = vector<complejo>();
     

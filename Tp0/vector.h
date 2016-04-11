@@ -16,15 +16,12 @@ using namespace std;
 
 template <class T>
 class vector{
-    
     private:
-        
         int size;
         int memSize;
         T* pv;
         
     public:
-        
         vector(){
             this->pv = NULL;
             this->size = 0;

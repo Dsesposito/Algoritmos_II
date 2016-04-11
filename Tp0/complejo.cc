@@ -156,7 +156,7 @@ operator/(complejo const &c, double f)
 complejo const 
 operator^(complejo const &c , int power){
     //Este operador solo sirve para exponentes no racionales
-    if(power != floor(power) ){
+    if(power != floor( (double) power) ){
         cout << "Exponente menor a cero o racional" << endl;
         abort();
     }
