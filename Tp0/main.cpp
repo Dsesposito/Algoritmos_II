@@ -93,7 +93,7 @@ void calculate(const vector<complejo> & data , vector<complejo> & result , strin
         if(algorithm == "idft"){
             sum = sum / N;
         }
-        result.pushFron(sum);
+        result.pushBack(sum);
     }
 } 
 
