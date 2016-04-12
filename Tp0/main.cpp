@@ -11,40 +11,40 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include "cmdline.h"
+#include "cmdlineConfigurator.cpp"
+
 
 using namespace std;
 
 
-int main(int argc, char** argv) {
-    
-	cout << "TP0" << endl;
 
+int main(int argc, char** argv) {
+   
     //Creo un vector que almacenará la información leída
     vector<complejo> data = vector<complejo>();
     
-    //Leo la información del archivo
-    ifstream dataFile("Data_red.csv");
-    dataFile >> data;
-
-    //Imprimo los datos
-    cout << " Datos " << endl << data << endl;
+    //Leo las opciones con las que me ejecutan el programa
+    cmdline cmdl(cmdlineConfigurator.options);	
+    cmdl.parse(argc, argv);
     
+    //Leo la información del stream de entrada
+    *iss >> data;
+
     //Calculo la serie
     vector<complejo> result = vector<complejo>(); ;
-    DFTcalculator dftcalculator = DFTcalculator();
-	dftcalculator.calculateDFT(data,result);
+    if(method = "dft"){
+        DFTcalculator.calculateDFT(data,result,method);
+    }
+    else if(method = "idft"){
+        DFTcalculator.calculateIDFT(data,result,method);   
+    }
     
-    //Imprimo los datos
-    cout << " Datos " << endl << data << endl;
     
-    //Imprimo la serie
-    cout << " Resultado " << endl << result << endl;
+    //Guardo el resultado en el stream de salida
+    *oss << result << endl;
+
     
-    vector<complejo> inv = vector<complejo>();
-    dftcalculator.calculateIDFT(result,inv);
-    
-    //Imprimo la serie invertida
-    cout << " Inverso " << endl << inv << endl;
     return 0;
 }
 
