@@ -22,38 +22,66 @@ class vector{
         T* pv;
         
     public:
+        
+        /**
+         * Constructor sin parámetros. Inicializa un vector en cero. Además no
+         * crea la memoria para el vector.
+         */
         vector(){
             this->pv = NULL;
             this->size = 0;
             this->memSize = 0;
         }
 
+        /**
+         * Constructor. Inicializa un vector vacío. A diferencia del constructor
+         * sin parámetros, este crea la memoria para el vector de acuerdo al
+         * parámetro size_. 
+         */
         vector(int size_){
             this->pv = new T[size_];
             this->size = size_;
             this->memSize = size_;
         }
 
+        /**
+         * Constructor copia. Inicializa un vector a partir de otro pasado
+         * por parámetro.
+         */
         vector(const vector<T> & cv){
             this->size = cv.size ;
             this->memSize = cv.memSize;
-            this->pv = new T[ size ];
+            T* cp = new T[ size ];
             for ( int i = 0; i < this->size; i++ ){
-                this->pv[ i ] = cv.pv[ i ];
+                cp[ i ] = cv.pv[ i ];
             }
+            delete[] this->pv;
+            this->pv = cp;
         }
 
+        /**
+         * Destructor de vector. borra la memoria creada para el vector.
+         */
         ~vector(){
             if(this->pv){
                 delete [] this->pv;
             }
         }
 
+        /**
+         * Largo del vector. Este método devuelve el largo del vector.
+         */
         int length() const{
             return this->size;
         }
 
-        void pushFron(T & elem){
+        /**
+         * Inserta un elemento al vector. Este método inserta al final del vector 
+         * un elemento. Para agregar el elemento primero verifica que tenga
+         * memoria, en caso de no tener crea memoria con capacidad igual al
+         * doble de la que tenía.
+         */
+        void pushBack(T & elem){
             if(this->size == 0){
                 this->pv = new T[2];
                 this->memSize = 2;
@@ -73,6 +101,10 @@ class vector{
             this->size++;
         }
         
+        /**
+         * Operador asignación. Este operador copia los elementos del vector
+         * pasado por parámetro al objeto sobre el cual se ejecuto.
+         */
         vector<T> & operator=(const vector<T> & rigth) {
             if (&rigth != this) 
             { 
@@ -113,7 +145,7 @@ class vector{
 
         const T & operator[](int index) const {
             if(index >= this->size){
-                cout << "Indice incorrecto en const operator[]" << endl;
+                cerr << "Indice incorrecto en const operator[]" << endl;
                 abort();
             }
             return this->pv[index];
@@ -130,7 +162,7 @@ class vector{
         friend std::istream &operator>>(std::istream & is,vector<T> & vector){
             T aux;
             for(int i = 0 ; is >> aux ; i++){
-                vector.pushFron(aux);
+                vector.pushBack(aux);
             }
             return is;
         }
