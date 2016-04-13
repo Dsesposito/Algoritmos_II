@@ -20,7 +20,7 @@
 class DFTcalculator
 {
     private:
-    void calculate(const vector<complejo> & data , vector<complejo> & result , string algorithm){
+    static void calculate(const vector<complejo> & data , vector<complejo> & result , string algorithm){
         int N = data.length();
         double re = cos(2*M_PI/N);
         double im = sin(2*M_PI/N);
@@ -46,12 +46,12 @@ class DFTcalculator
     public:
     static void calculateDFT(const vector<complejo> & data , vector<complejo> & result)
     {
-        return calculate(data , result , "dft");
+        calculate(data , result , "dft");
     }
 
     static void calculateIDFT(const vector<complejo> & data , vector<complejo> & result)
     {
-        return calculate(data , result , "idft");
+        calculate(data , result , "idft");
     }
 
 };
