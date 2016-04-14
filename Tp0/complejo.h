@@ -7,7 +7,13 @@
  * comunes que se pueden llegar a necesitar para operar con numeros complejos.
  */
 class complejo {
-    double re_, im_;
+    
+    //Parte real del número complejo
+    double re_;
+    
+    //Parte imaginaria del número complejo
+    double im_;
+    
 public:
     /**
      * Constructor sin parámetros. Este constructor permite inicializar un 
