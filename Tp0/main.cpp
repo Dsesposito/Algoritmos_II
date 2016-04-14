@@ -107,10 +107,6 @@ int main(int argc, char** argv) {
     //Guardo el resultado en el stream de salida
     *oss << result << endl;
     
-    //Borramos la memoria creada.
-    //delete &data;
-    //delete &result;
-    
     return 0;
 }
 

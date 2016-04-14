@@ -76,8 +76,8 @@ class vector{
          * Destructor de vector. borra la memoria creada para el vector.
          */
         ~vector(){
-            if(this->pv){
-                delete [] this->pv;
+            if(this->pv != NULL){
+                delete[] pv;
             }
         }
 
