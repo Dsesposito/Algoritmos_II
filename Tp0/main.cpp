@@ -108,8 +108,8 @@ int main(int argc, char** argv) {
     *oss << result << endl;
     
     //Borramos la memoria creada.
-    delete &data;
-    delete &result;
+    //delete &data;
+    //delete &result;
     
     return 0;
 }

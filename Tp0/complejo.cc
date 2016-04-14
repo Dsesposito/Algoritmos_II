@@ -103,8 +103,8 @@ bool operator== (complejo const &x, complejo const &y){
 }
 
 ostream & operator<<(ostream &os, const complejo &c){
-    double reAux = floor(c.re_*100)/100;
-    double imAux = floor(c.im_ *100)/100;
+    double reAux = c.re_;
+    double imAux = c.im_;
     return os << "(" << reAux << "," << imAux << ")";
 }
 
