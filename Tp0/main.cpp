@@ -1,18 +1,18 @@
 /* 
  * File:   main.cpp
- * Author: diego
+ * Author: Diego / Marcelo
  *
  * Created on March 21, 2016, 8:09 PM
  */
 
 #include <cstdlib>
-#include "DFTcalculator.cc"
+#include "vector.h"
+#include "complejo.h"
 #include <fstream>
 #include <iostream>
 #include <cmath>
-#include <string>
 #include "cmdline.h"
-
+#include "DFTcalculator.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ using namespace std;
 #define OPT_MANDATORY 2
 
 
-static string fMethod;
+static string method;
 static istream *iss = NULL;	
 static ostream *oss = NULL;	
 static fstream ifs; 		
@@ -65,7 +65,7 @@ static void opt_help(string const &arg){
 }
 
 static void opt_method(string const &arg){
-    fMethod = arg;
+    method = arg;
 }
 
 static option_t options[] = {
@@ -76,10 +76,14 @@ static option_t options[] = {
 	{0, },
 };
 
-
-
+/**
+ * Función main. El programa espera por comando que le configuren el stream de entrada
+ * de donde tomará los datos para calcular la transformada discreta de fourier. 
+ * Además necesita que le configuren el stream de salida a donde escribirá los
+ * datos obtenidos. 
+ */
 int main(int argc, char** argv) {
-   
+    
     //Creo un vector que almacenará la información leída
     vector<complejo> data = vector<complejo>();
     
@@ -91,18 +95,21 @@ int main(int argc, char** argv) {
     *iss >> data;
 
     //Calculo la serie
-    vector<complejo> result = vector<complejo>(); ;
-    if(fMethod == "dft"){
-        //DFTcalculator.calculateDFT(data,result);
+    vector<complejo> result = vector<complejo>();
+    if(method == "dft"){
+        DFTcalculator::calculateDFT(data,result);
     }
-    else if(fMethod == "idft"){
-        //DFTcalculator.calculateIDFT(data,result);   
+    else if(method == "idft"){
+        DFTcalculator::calculateIDFT(data,result);
     }
     
     
     //Guardo el resultado en el stream de salida
     *oss << result << endl;
-
+    
+    //Borramos la memoria creada.
+    delete &data;
+    delete &result;
     
     return 0;
 }

@@ -2,7 +2,7 @@
 
 /* 
  * File:   vector.h
- * Author: diego
+ * Author: Diego / Marcelo
  *
  * Created on March 21, 2016, 8:56 PM
  */
@@ -14,11 +14,22 @@
 
 using namespace std;
 
+
+/**
+ * Clase vector. Permite almacenar un arreglo de datos. Contiene una serie de 
+ * de métodos que permiten agregar, quitar y leer los distintos elementos almacenados
+ * en el vector. Además la clase esta templetizada, permitiendo así crear vectores
+ * de cualquier tipo.
+ */
 template <class T>
 class vector{
+    
     private:
+        //Tamaño del vector
         int size;
-        int memSize;
+        //Cantidad de espacio en memoria del vector
+        int capacity;
+        //Puntero a la primera posición del vector
         T* pv;
         
     public:
@@ -30,7 +41,7 @@ class vector{
         vector(){
             this->pv = NULL;
             this->size = 0;
-            this->memSize = 0;
+            this->capacity = 0;
         }
 
         /**
@@ -41,7 +52,7 @@ class vector{
         vector(int size_){
             this->pv = new T[size_];
             this->size = size_;
-            this->memSize = size_;
+            this->capacity = size_;
         }
 
         /**
@@ -50,12 +61,14 @@ class vector{
          */
         vector(const vector<T> & cv){
             this->size = cv.size ;
-            this->memSize = cv.memSize;
+            this->capacity = cv.capacity;
             T* cp = new T[ size ];
             for ( int i = 0; i < this->size; i++ ){
                 cp[ i ] = cv.pv[ i ];
             }
-            delete[] this->pv;
+            if(this->pv){
+                delete[] this->pv;
+            }
             this->pv = cp;
         }
 
@@ -84,13 +97,13 @@ class vector{
         void pushBack(T & elem){
             if(this->size == 0){
                 this->pv = new T[2];
-                this->memSize = 2;
+                this->capacity = 2;
             }
             else{
-                if(this->memSize == this->size){
+                if(this->capacity == this->size){
                     T* aux = this->pv;
-                    this->pv = new T[this->memSize*2];
-                    this->memSize = this->memSize*2;
+                    this->pv = new T[this->capacity*2];
+                    this->capacity = this->capacity*2;
                     for(int i = 0 ; i < this->size ; i++){
                         this->pv[i] = aux[i];
                     }
@@ -131,7 +144,11 @@ class vector{
         }
 
 
-
+        /**
+         * Operador comparación. Compara el contenido del vector pasado por
+         * parámetro con el vector sobre el cual se ejecuto el operador. En el
+         * caso que todos los elementos coincidan devuelve true. 
+         */
         bool operator==(const vector<T> & rigth) const {
             if (this->size != rigth.size)
                 return false; // Vectores de diferentes tamaños
@@ -142,7 +159,10 @@ class vector{
             return true; 
         }
 
-
+        /**
+         * Operador indexación constante. Permite obtener el objeto almacenado en una
+         * determinada posición del vector.
+         */
         const T & operator[](int index) const {
             if(index >= this->size){
                 cerr << "Indice incorrecto en const operator[]" << endl;
@@ -151,6 +171,10 @@ class vector{
             return this->pv[index];
         }
         
+        /**
+         * Operador indexación. Permite asignarle un valor a una determinada
+         * posición del vector.
+         */
         T & operator[](int index) {
             if(index >= this->size){
                 cout << "Indice incorrecto en operator[]" << endl;
@@ -159,6 +183,10 @@ class vector{
             return this->pv[index];
         }
         
+        /**
+         * Operador lectura. Permite leer de un stream de entrada un conjunto
+         * de objetos del tipo T, almacenándolos en un vector.
+         */
         friend std::istream &operator>>(std::istream & is,vector<T> & vector){
             T aux;
             for(int i = 0 ; is >> aux ; i++){
@@ -167,6 +195,10 @@ class vector{
             return is;
         }
 
+        /**
+         * Operador escritura. Permite escribir en un stream de salida el vector
+         * del cual se llamo.
+         */
         friend std::ostream &operator<<(std::ostream & os, const vector<T> & vector){
             for(int i = 0 ; i < vector.size ; i++){
                 os << vector[i] << endl;
