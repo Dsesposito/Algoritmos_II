@@ -84,29 +84,29 @@ static option_t options[] = {
  */
 int main(int argc, char** argv) {
     
-    //Creo un vector que almacenará la información leída
-    vector<complejo> data = vector<complejo>();
-    
-    //Leo las opciones con las que me ejecutan el programa
-    cmdline cmdl(options);	
-    cmdl.parse(argc, argv);
-    
-    //Leo la información del stream de entrada
-    *iss >> data;
+    while(1){
+        
+        cout << "Ingrese la secuencia de datos";
+        
+        //Creo un vector que almacenará la información leída
+        vector<complejo> data = vector<complejo>();
 
-    //Calculo la serie
-    vector<complejo> result = vector<complejo>();
-    if(method == "dft"){
-        DFTcalculator::calculateDFT(data,result);
+        //Leo la información del stream de entrada
+        cin >> data;
+
+        //Calculo la serie
+        vector<complejo> result = vector<complejo>();
+        if(method == "dft"){
+            DFTcalculator::calculateDFT(data,result);
+        }
+        else if(method == "idft"){
+            DFTcalculator::calculateIDFT(data,result);
+        }
+
+
+        //Guardo el resultado en el stream de salida
+        *oss << result << endl;
     }
-    else if(method == "idft"){
-        DFTcalculator::calculateIDFT(data,result);
-    }
-    
-    
-    //Guardo el resultado en el stream de salida
-    *oss << result << endl;
-    
     return 0;
 }
 
