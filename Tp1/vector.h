@@ -114,6 +114,20 @@ class vector{
             this->size++;
         }
         
+        T & popBack(){
+            this->size--;
+            return this->pv[this->size - 1];
+        }
+        
+        T & getCircular(int index){
+            if(index >= this->size){
+                return this->pv[index -  this->size];
+            }
+            else{
+                return this->pv[index];
+            }
+        }
+        
         /**
          * Operador asignación. Este operador copia los elementos del vector
          * pasado por parámetro al objeto sobre el cual se ejecuto.
@@ -201,8 +215,9 @@ class vector{
          */
         friend std::ostream &operator<<(std::ostream & os, const vector<T> & vector){
             for(int i = 0 ; i < vector.size ; i++){
-                os << vector[i] << endl;
+                os << vector[i] << " ";
             }
+            os << endl;
             return os;
         }
 };

@@ -10,6 +10,7 @@
 #include "complejo.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>  
 #include <cmath>
 #include "cmdline.h"
 #include "DFTcalculator.h"
@@ -86,27 +87,41 @@ int main(int argc, char** argv) {
     
     while(1){
         
-        cout << "Ingrese la secuencia de datos";
+        cout << "Ingrese una secuencia de numeros complejos, al finalizar presione enter " << endl;
         
         //Creo un vector que almacenará la información leída
         vector<complejo> data = vector<complejo>();
 
         //Leo la información del stream de entrada
-        cin >> data;
-
+        string line;
+        getline(cin,line);
+        
+        istringstream iss(line);
+        iss >> data;
+        cout << endl;
+        
         //Calculo la serie
         vector<complejo> result = vector<complejo>();
-        if(method == "dft"){
-            DFTcalculator::calculateDFT(data,result);
-        }
-        else if(method == "idft"){
-            DFTcalculator::calculateIDFT(data,result);
-        }
-
-
+        
+        DFTcalculator::calculateDFT(data,result);
+        
+        
+        //Calculo la serie
+        vector<complejo> result_II = vector<complejo>();
+        
+        DFTcalculator::calculateFFT(data,result_II);
+        
         //Guardo el resultado en el stream de salida
-        *oss << result << endl;
+        cout << "El resultado es: " << endl << result << endl;
+        
+        //Guardo el resultado en el stream de salida
+        cout << "El resultado es: " << endl << result_II << endl;
     }
     return 0;
 }
 
+
+    /*
+    
+     * //43228000
+    */ 
