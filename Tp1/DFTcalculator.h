@@ -55,6 +55,7 @@ class DFTcalculator
     } 
 
     static void FFTAlgorithm(const vector<complejo> & data , vector<complejo> & result , vector<int> & indexes){
+
         // Si todavía no llegué al caso base llamo recursivamente
         if(indexes.length() != 1){
             //Creo dos vectores de índices, estos vectores me sirven para no tener que 

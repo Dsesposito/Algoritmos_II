@@ -100,11 +100,20 @@ int main(int argc, char** argv) {
         iss >> data;
         cout << endl;
         
+        //Si el largo no es potencia de 2 completo con ceros
+        int dataLength = data.length();
+        if(dataLength & (dataLength - 1)){
+            int nearest = pow(2,ceil(log(dataLength)/log(2)));
+            for(int i = dataLength ; i < nearest ; i++){
+                complejo complexZero = complejo();
+                data.pushBack(complexZero);   
+            }
+        }
+        
         //Calculo la serie
         vector<complejo> result = vector<complejo>();
         
         DFTcalculator::calculateDFT(data,result);
-        
         
         //Calculo la serie
         vector<complejo> result_II = vector<complejo>();
