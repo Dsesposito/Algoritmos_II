@@ -7,7 +7,7 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complejo.h"
+#include "complex.h"
 #include <fstream>
 #include <iostream>
 #include <cmath>
@@ -32,20 +32,19 @@ class DFTcalculator
      * transformada como la anti transformada de fourier. Es un metodo privado que
      * utiliza la clase.
      */
-    static void bruteForceAlgorithm(const vector<complejo> & data , vector<complejo> & result , string algorithm){
+    static void bruteForceAlgorithm(const vector<complex> & data , vector<complex> & result , string algorithm){
         int N = data.length();
-        double re = cos(2*M_PI/N);
-        double im = sin(2*M_PI/N);
         int sign = 1;
         if(algorithm == "idft"){
             sign = -1;
         }
         for(int i = 0 ; i < N ; i++){
-            complejo sum = 0;
+            complex sum = 0;
             for(int j = 0 ; j < N ; j++){
-                complejo aux(re,im);
-                aux = aux^(sign*j*i);
-                sum = sum + (data[j]*aux);
+                double re = cos(2*M_PI*j*i*sign/N);
+                double im = sin(2*M_PI*j*i*sign/N);
+                complex W = complex(re,im);
+                sum = sum + (data[j]*W);
             }
             if(algorithm == "idft"){
                 sum = sum / N;
@@ -54,7 +53,7 @@ class DFTcalculator
         }
     } 
 
-    static void FFTAlgorithm(const vector<complejo> & data , vector<complejo> & result , vector<int> & indexes){
+    static void FFTAlgorithm(const vector<complex> & data , vector<complex> & result , vector<int> & indexes){
 
         // Si todavía no llegué al caso base llamo recursivamente
         if(indexes.length() != 1){
@@ -75,8 +74,8 @@ class DFTcalculator
             }
             //Creo dos vectores que almacenarán los resultados de las transformadas
             //de los índices pares e impares.
-            vector<complejo> evenResult = vector<complejo>();
-            vector<complejo> oddResult = vector<complejo>();
+            vector<complex> evenResult = vector<complex>();
+            vector<complex> oddResult = vector<complex>();
             //Llamo recursivamente para calcular la DFT sobre la sub secuencia
             FFTAlgorithm(data,evenResult,evenIndexes);
             FFTAlgorithm(data,oddResult,oddIndexes);
@@ -85,15 +84,15 @@ class DFTcalculator
             for(int i = 0 ; i < N ; i++){
                 double re = cos(2*M_PI*i/N);
                 double im = sin(2*M_PI*i/N);
-                complejo W(re,im);
-                complejo Xk = W*oddResult.getCircular(i) + evenResult.getCircular(i);
+                complex W(re,im);
+                complex Xk = W*oddResult.getCircular(i) + evenResult.getCircular(i);
                 result.pushBack(Xk);
             }    
         }
         else{
             //Obtengo el dato que necesito a partir del vector de índices
             int dataIndex = indexes[0];
-            complejo dataComplex = data[dataIndex];
+            complex dataComplex = data[dataIndex];
             result.pushBack(dataComplex);
         }
     }  
@@ -105,7 +104,7 @@ class DFTcalculator
      * por parámetro dos vectores uno con la información y otro donde escribirá
      * el resultado.
      */
-    static void calculateDFT(const vector<complejo> & data , vector<complejo> & result)
+    static void calculateDFT(const vector<complex> & data , vector<complex> & result)
     {
         bruteForceAlgorithm(data , result , "dft");
     }
@@ -114,12 +113,12 @@ class DFTcalculator
      * Método el cual permite calcular la anti-transformada discreta de fourier. 
      * Recibe dos parámetros uno con la información y otro donde la escribirá.
      */
-    static void calculateIDFT(const vector<complejo> & data , vector<complejo> & result)
+    static void calculateIDFT(const vector<complex> & data , vector<complex> & result)
     {
         bruteForceAlgorithm(data , result , "idft");
     }
     
-    static void calculateFFT(const vector<complejo> & data , vector<complejo> & result){
+    static void calculateFFT(const vector<complex> & data , vector<complex> & result){
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
             initIndexes.pushBack(i);

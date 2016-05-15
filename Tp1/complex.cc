@@ -1,76 +1,76 @@
-#include "complejo.h"
+#include "complex.h"
 #include <iostream>
 #include <cmath>
 #include <stdlib.h>
 
 using namespace std;
 
-complejo::complejo() : re_(0), im_(0) {}
+complex::complex() : re_(0), im_(0) {}
 
-complejo::complejo(double r) : re_(r), im_(0){}
+complex::complex(double r) : re_(r), im_(0){}
 
-complejo::complejo(double r, double i) : re_(r), im_(i){}
+complex::complex(double r, double i) : re_(r), im_(i){}
 
-complejo::complejo(complejo const &c) : re_(c.re_), im_(c.im_){}
+complex::complex(complex const &c) : re_(c.re_), im_(c.im_){}
 
-complejo const & complejo::operator=(complejo const &c){
+complex const & complex::operator=(complex const &c){
     re_ = c.re_;
     im_ = c.im_;
     return *this;
 }
 
-complejo::~complejo() {}
+complex::~complex() {}
 
-double complejo::re() const {
+double complex::re() const {
     return re_;
 }
 
-double complejo::im() const {
+double complex::im() const {
     return im_;
 }
 
-double complejo::abs() const {
+double complex::abs() const {
     return std::sqrt(re_ * re_ + im_ * im_);
 }
 
 
-double complejo::phase() const {
+double complex::phase() const {
     return atan(this->im_/this->re_);
 }
 
 
-complejo complejo::fromPolarToRectangular(double mod,double phase){
+complex complex::fromPolarToRectangular(double mod,double phase){
     double re = mod*cos(phase);
     double im = mod*sin(phase);
-    return complejo(re,im);
+    return complex(re,im);
 }
 
-complejo const operator+(complejo const &x, complejo const &y){
-    complejo z(x.re_ + y.re_, x.im_ + y.im_);
+complex const operator+(complex const &x, complex const &y){
+    complex z(x.re_ + y.re_, x.im_ + y.im_);
     return z;
 }
 
-complejo const operator-(complejo const &x, complejo const &y){
-    complejo r(x.re_ - y.re_, x.im_ - y.im_);
+complex const operator-(complex const &x, complex const &y){
+    complex r(x.re_ - y.re_, x.im_ - y.im_);
     return r;
 }
 
-complejo const operator*(complejo const &x, complejo const &y){
-    complejo r(x.re_ * y.re_ - x.im_ * y.im_,
+complex const operator*(complex const &x, complex const &y){
+    complex r(x.re_ * y.re_ - x.im_ * y.im_,
               x.re_ * y.im_ + x.im_ * y.re_);
     return r;
 }
 
 
-complejo const operator/(complejo const &c, double f)
+complex const operator/(complex const &c, double f)
 {
-	return complejo(c.re_ / f, c.im_ / f);
+	return complex(c.re_ / f, c.im_ / f);
 }
 
-complejo const operator^(complejo const &c , int power){
+complex const operator^(complex const &c , int power){
     
     if(power == 0){
-        return complejo(1,0);
+        return complex(1,0);
     }
     
     if(power == 1){
@@ -88,27 +88,27 @@ complejo const operator^(complejo const &c , int power){
     }
     phase = phase*power;
     
-    return complejo::fromPolarToRectangular(module,phase);
+    return complex::fromPolarToRectangular(module,phase);
 }
 
 
-bool operator== (complejo const &c, double f){
+bool operator== (complex const &c, double f){
     bool b = (c.im_ != 0 || c.re_ != f) ? false : true;
     return b;
 }
 
-bool operator== (complejo const &x, complejo const &y){
+bool operator== (complex const &x, complex const &y){
     bool b = (x.re_ != y.re_ || x.im_ != y.im_) ? false : true;
     return b;
 }
 
-ostream & operator<<(ostream &os, const complejo &c){
+ostream & operator<<(ostream &os, const complex &c){
     double reAux = ((int)(c.re_*100))/100.0;
     double imAux = ((int)(c.im_*100))/100.0;
     return os << "(" << reAux << "," << imAux << ")";
 }
 
-istream & operator>>(istream &is, complejo &c) {
+istream & operator>>(istream &is, complex &c) {
     int good = false;
     int bad  = false;
     double re = 0;

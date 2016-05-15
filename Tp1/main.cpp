@@ -7,13 +7,14 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complejo.h"
+#include "complex.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>  
 #include <cmath>
 #include "cmdline.h"
 #include "DFTcalculator.h"
+#include <ctime>
 
 using namespace std;
 
@@ -90,7 +91,7 @@ int main(int argc, char** argv) {
         cout << "Ingrese una secuencia de numeros complejos, al finalizar presione enter " << endl;
         
         //Creo un vector que almacenará la información leída
-        vector<complejo> data = vector<complejo>();
+        vector<complex> data = vector<complex>();
 
         //Leo la información del stream de entrada
         string line;
@@ -105,26 +106,35 @@ int main(int argc, char** argv) {
         if(dataLength & (dataLength - 1)){
             int nearest = pow(2,ceil(log(dataLength)/log(2)));
             for(int i = dataLength ; i < nearest ; i++){
-                complejo complexZero = complejo();
+                complex complexZero = complex();
                 data.pushBack(complexZero);   
             }
         }
         
+        //Calculo la DFT
+        vector<complex> DFTresult = vector<complex>();
+        
+        time_t timeBDFT = time(0);
+        DFTcalculator::calculateDFT(data,DFTresult);
+        time_t timeADFT = time(0);
+        double DFTdiff = difftime(timeADFT,timeBDFT);
+        
         //Calculo la serie
-        vector<complejo> result = vector<complejo>();
+        vector<complex> FFTresult = vector<complex>();
         
-        DFTcalculator::calculateDFT(data,result);
-        
-        //Calculo la serie
-        vector<complejo> result_II = vector<complejo>();
-        
-        DFTcalculator::calculateFFT(data,result_II);
+        time_t timeBFFT = time(0);
+        DFTcalculator::calculateFFT(data,FFTresult);
+        time_t timeAFFT = time(0);
+        double FFTdiff = difftime(timeAFFT,timeBFFT);        
         
         //Guardo el resultado en el stream de salida
-        cout << "El resultado es: " << endl << result << endl;
+        cout << "El resultado de la DFT es: " << endl << DFTresult << endl;
+        cout << "El proceso tardó: " << DFTdiff << " segundos" << endl;
         
         //Guardo el resultado en el stream de salida
-        cout << "El resultado es: " << endl << result_II << endl;
+        cout << "El resultado de la FFT es: " << endl << FFTresult << endl;
+        cout << "El proceso tardó: " <<  FFTdiff << " segundos" << endl;
+        cout << endl;
     }
     return 0;
 }
