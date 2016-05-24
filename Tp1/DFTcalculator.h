@@ -53,10 +53,10 @@ class DFTcalculator
         }
     } 
 
-    static void FFTAlgorithm(const vector<complex> & data , vector<complex> & result , vector<int> & indexes,string algorithm){
+    static void FFTAlgorithm(const vector<complex>& data , vector<complex>& result , vector<int>& indexes, string algorithm){
 
         int sign = 1;
-        if(algorithm == "idft"){
+        if(algorithm == "ifft"){
             sign = -1;
         }
         
@@ -104,14 +104,18 @@ class DFTcalculator
         if(algorithm == "ifft" && result.length() == data.length()){
             result = result/result.length();
         }
-        
     }  
 
-    static void fillMinPower2(vector<complex> & data){
+    static void fillMinPower2(vector<complex>& data){
         //Si el largo no es potencia de 2 completo con ceros
         int dataLength = data.length();
+
+		double l1 = log((double) dataLength);
+		double base = 2;
+		double l2 = log(base);
+
         if(dataLength & (dataLength - 1)){
-            int nearest = pow(2,ceil(log(dataLength)/log(2)));
+            int nearest = pow(2, ceil( l1 / l2 ) );
             for(int i = dataLength ; i < nearest ; i++){
                 complex complexZero = complex();
                 data.pushBack(complexZero);   
@@ -119,14 +123,16 @@ class DFTcalculator
         }
     }
     
-    public:
-        
-    /**
+
+
+	public:
+
+		/**
      * Método el cual permite calcular la transformada discreta de fourier. Recibe
      * por parámetro dos vectores uno con la información y otro donde escribirá
      * el resultado.
      */
-    static void calculateDFT(const vector<complex> & data , vector<complex> & result)
+    static void calculateDFT(const vector<complex>& data , vector<complex>& result)
     {
         bruteForceAlgorithm(data , result , "dft");
     }
@@ -135,7 +141,7 @@ class DFTcalculator
      * Método el cual permite calcular la anti-transformada discreta de fourier. 
      * Recibe dos parámetros uno con la información y otro donde la escribirá.
      */
-    static void calculateiDFT(const vector<complex> & data , vector<complex> & result)
+    static void calculateiDFT(const vector<complex>& data , vector<complex>& result)
     {
         bruteForceAlgorithm(data , result , "idft");
     }
@@ -151,7 +157,7 @@ class DFTcalculator
     }
     
         
-    static void calculateiFFT(vector<complex> & data , vector<complex> & result){
+    static void calculateiFFT(vector<complex>& data , vector<complex>& result){
         DFTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
