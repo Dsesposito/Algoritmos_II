@@ -7,13 +7,13 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complex.h"
+#include "complex.cc"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <sstream>  
 #include <cmath>
-#include "cmdline.h"
+#include "cmdline.cc"
 #include "DFTcalculator.h"
 #include <ctime>
 
