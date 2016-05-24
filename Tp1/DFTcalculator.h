@@ -147,7 +147,7 @@ class DFTcalculator
     }
     
     
-    static void calculateFFT(vector<complex> & data , vector<complex> & result){
+    static void calculateFFT(vector<complex>& data , vector<complex>& result){
         DFTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
