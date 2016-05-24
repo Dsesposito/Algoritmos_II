@@ -157,7 +157,7 @@ class vector{
             return *this;
         }
 
-
+        
         /**
          * Operador comparación. Compara el contenido del vector pasado por
          * parámetro con el vector sobre el cual se ejecuto el operador. En el
@@ -185,6 +185,7 @@ class vector{
             return this->pv[index];
         }
         
+        
         /**
          * Operador indexación. Permite asignarle un valor a una determinada
          * posición del vector.
@@ -195,6 +196,14 @@ class vector{
                 abort();
             }
             return this->pv[index];
+        }
+        
+        
+        friend vector<T> & operator/(vector<T> & vector, double divider){
+            for(int i = 0; i < vector.length();i++){
+                vector.pv[i] = (vector.pv[i])/divider;
+            }
+            return vector;
         }
         
         /**

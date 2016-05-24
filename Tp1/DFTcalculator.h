@@ -53,8 +53,13 @@ class DFTcalculator
         }
     } 
 
-    static void FFTAlgorithm(const vector<complex> & data , vector<complex> & result , vector<int> & indexes){
+    static void FFTAlgorithm(const vector<complex> & data , vector<complex> & result , vector<int> & indexes,string algorithm){
 
+        int sign = 1;
+        if(algorithm == "idft"){
+            sign = -1;
+        }
+        
         // Si todavía no llegué al caso base llamo recursivamente
         if(indexes.length() != 1){
             //Creo dos vectores de índices, estos vectores me sirven para no tener que 
@@ -68,22 +73,21 @@ class DFTcalculator
             //Guardo los índices pares e impares en los respectivos vectores
             for(int i = 0 ; i < indexes.length() ; i = i + 2){
                 evenIndexes.pushBack(indexes[i]);
-                if(i+1 < indexes.length()){
-                    oddIndexes.pushBack(indexes[i+1]);
-                }
+                oddIndexes.pushBack(indexes[i+1]);
+                
             }
             //Creo dos vectores que almacenarán los resultados de las transformadas
             //de los índices pares e impares.
             vector<complex> evenResult = vector<complex>();
             vector<complex> oddResult = vector<complex>();
             //Llamo recursivamente para calcular la DFT sobre la sub secuencia
-            FFTAlgorithm(data,evenResult,evenIndexes);
-            FFTAlgorithm(data,oddResult,oddIndexes);
+            FFTAlgorithm(data,evenResult,evenIndexes,algorithm);
+            FFTAlgorithm(data,oddResult,oddIndexes,algorithm);
             //Uno la DFT de ambas sub secuencias
             int N = evenResult.length() + oddResult.length();
             for(int i = 0 ; i < N ; i++){
-                double re = cos(2*M_PI*i/N);
-                double im = sin(2*M_PI*i/N);
+                double re = cos(sign*2*M_PI*i/N);
+                double im = sin(sign*2*M_PI*i/N);
                 complex W(re,im);
                 complex Xk = W*oddResult.getCircular(i) + evenResult.getCircular(i);
                 result.pushBack(Xk);
@@ -95,8 +99,26 @@ class DFTcalculator
             complex dataComplex = data[dataIndex];
             result.pushBack(dataComplex);
         }
+        
+        //CUando terminan todas las llamadas recursivas, si era idft divido por N
+        if(algorithm == "ifft" && result.length() == data.length()){
+            result = result/result.length();
+        }
+        
     }  
 
+    static void fillMinPower2(vector<complex> & data){
+        //Si el largo no es potencia de 2 completo con ceros
+        int dataLength = data.length();
+        if(dataLength & (dataLength - 1)){
+            int nearest = pow(2,ceil(log(dataLength)/log(2)));
+            for(int i = dataLength ; i < nearest ; i++){
+                complex complexZero = complex();
+                data.pushBack(complexZero);   
+            }
+        }
+    }
+    
     public:
         
     /**
@@ -113,17 +135,29 @@ class DFTcalculator
      * Método el cual permite calcular la anti-transformada discreta de fourier. 
      * Recibe dos parámetros uno con la información y otro donde la escribirá.
      */
-    static void calculateIDFT(const vector<complex> & data , vector<complex> & result)
+    static void calculateiDFT(const vector<complex> & data , vector<complex> & result)
     {
         bruteForceAlgorithm(data , result , "idft");
     }
     
-    static void calculateFFT(const vector<complex> & data , vector<complex> & result){
+    
+    static void calculateFFT(vector<complex> & data , vector<complex> & result){
+        DFTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
             initIndexes.pushBack(i);
         }
-        FFTAlgorithm(data,result,initIndexes);
+        FFTAlgorithm(data,result,initIndexes,"fft");
+    }
+    
+        
+    static void calculateiFFT(vector<complex> & data , vector<complex> & result){
+        DFTcalculator::fillMinPower2(data);
+        vector<int> initIndexes = vector<int>();
+        for(int i = 0 ; i < data.length() ; i++){
+            initIndexes.pushBack(i);
+        }
+        FFTAlgorithm(data,result,initIndexes,"ifft");
     }
 
 };

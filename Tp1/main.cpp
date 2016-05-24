@@ -10,6 +10,7 @@
 #include "complex.h"
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <sstream>  
 #include <cmath>
 #include "cmdline.h"
@@ -24,21 +25,21 @@ using namespace std;
 
 
 static string method;
-static istream *iss = NULL;	
-static ostream *oss = NULL;	
+static istream *is = NULL;	
+static ostream *os = NULL;	
 static fstream ifs; 		
 static fstream ofs;
 
 static void opt_input(string const &arg){
     if (arg == "-") {
-        iss = &cin;
+        is = &cin;
     }
     else {
         ifs.open(arg.c_str(), ios::in); 
-        iss = &ifs;
+        is = &ifs;
     }
 
-    if (!iss->good()) {
+    if (!is->good()) {
         cerr << "cannot open " << arg << "." << endl;
         abort();
     }
@@ -46,23 +47,23 @@ static void opt_input(string const &arg){
 
 static void opt_output(string const &arg){
     if (arg == "-") {
-        oss = &cout;
+        os = &cout;
     } 
     else {
         ofs.open(arg.c_str(), ios::out);
-        oss = &ofs;
+        os = &ofs;
     }
 
-    if (!oss->good()) {
+    if (!os->good()) {
         cerr << "cannot open " << arg << "." << endl;
         abort();
     }
 }
 
 static void opt_help(string const &arg){
-    cout << "cmdline [-m method] [-i file] [-o file]" << endl;
+    cout << "cmdline [-m \"dft\" \"idft\" \"fft\" \"ifft\"] [-i file] [-o file]" << endl;
     cout << "The default input output are the standar IO.";
-    cout << "The default method is discrete fourier transform.";
+    cout << "The default method is the discrete fast fourier transform (fft).";
     exit(0);
 }
 
@@ -73,7 +74,7 @@ static void opt_method(string const &arg){
 static option_t options[] = {
 	{1, "i", "input", "-", opt_input, OPT_DEFAULT},
 	{1, "o", "output", "-", opt_output, OPT_DEFAULT},
-	{1, "m", "method", "dft", opt_method, OPT_DEFAULT},
+	{1, "m", "method", "fft", opt_method, OPT_DEFAULT},
 	{0, "h", "help", NULL, opt_help, OPT_DEFAULT},
 	{0, },
 };
@@ -86,55 +87,48 @@ static option_t options[] = {
  */
 int main(int argc, char** argv) {
     
-    while(1){
-        
-        cout << "Ingrese una secuencia de numeros complejos, al finalizar presione enter " << endl;
+    //Leo las opciones con las que me ejecutan el programa
+    cmdline cmdl(options);	
+    cmdl.parse(argc, argv);
+    
+    //Leo la información del stream de entrada linea por linea
+    string line;
+    while(getline(*is,line)){
         
         //Creo un vector que almacenará la información leída
         vector<complex> data = vector<complex>();
-
-        //Leo la información del stream de entrada
-        string line;
-        getline(cin,line);
+        
+        //Creo un vector que almacenará el resultado
+        vector<complex> result = vector<complex>();
         
         istringstream iss(line);
         iss >> data;
-        cout << endl;
+
+        *os << std::setprecision(2);
+        *os << std::fixed;
         
-        //Si el largo no es potencia de 2 completo con ceros
-        int dataLength = data.length();
-        if(dataLength & (dataLength - 1)){
-            int nearest = pow(2,ceil(log(dataLength)/log(2)));
-            for(int i = dataLength ; i < nearest ; i++){
-                complex complexZero = complex();
-                data.pushBack(complexZero);   
-            }
+        
+        
+        //Dependiendo que ingreso el usuario hago una cosa u otra
+        if(method == "dft"){
+            //Calculo la DFT
+            DFTcalculator::calculateDFT(data,result); 
         }
-        
-        //Calculo la DFT
-        vector<complex> DFTresult = vector<complex>();
-        
-        time_t timeBDFT = time(0);
-        DFTcalculator::calculateDFT(data,DFTresult);
-        time_t timeADFT = time(0);
-        double DFTdiff = difftime(timeADFT,timeBDFT);
-        
-        //Calculo la serie
-        vector<complex> FFTresult = vector<complex>();
-        
-        time_t timeBFFT = time(0);
-        DFTcalculator::calculateFFT(data,FFTresult);
-        time_t timeAFFT = time(0);
-        double FFTdiff = difftime(timeAFFT,timeBFFT);        
-        
-        //Guardo el resultado en el stream de salida
-        cout << "El resultado de la DFT es: " << endl << DFTresult << endl;
-        cout << "El proceso tardó: " << DFTdiff << " segundos" << endl;
-        
-        //Guardo el resultado en el stream de salida
-        cout << "El resultado de la FFT es: " << endl << FFTresult << endl;
-        cout << "El proceso tardó: " <<  FFTdiff << " segundos" << endl;
-        cout << endl;
+        else if(method == "idft"){
+            //Calculo la DFT
+            DFTcalculator::calculateiDFT(data,result); 
+        }
+        else if(method == "fft"){
+            //Calculo la FFT
+            DFTcalculator::calculateFFT(data,result); 
+        }
+        else if(method == "ifft"){
+            //Calculo la iFFT
+            DFTcalculator::calculateiFFT(data,result); 
+        }
+
+        //Imprimo el resultado
+        *os << result;
     }
     return 0;
 }

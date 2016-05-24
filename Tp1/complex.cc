@@ -103,9 +103,9 @@ bool operator== (complex const &x, complex const &y){
 }
 
 ostream & operator<<(ostream &os, const complex &c){
-    double reAux = ((int)(c.re_*100))/100.0;
-    double imAux = ((int)(c.im_*100))/100.0;
-    return os << "(" << reAux << "," << imAux << ")";
+    //double reAux = ((int)(c.re_*100))/100.0;
+    //double imAux = ((int)(c.im_*100))/100.0;
+    return os << "(" << c.re_ << "," << c.im_ << ")";
 }
 
 istream & operator>>(istream &is, complex &c) {
