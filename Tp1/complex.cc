@@ -33,6 +33,12 @@ double complex::abs() const {
     return std::sqrt(re_ * re_ + im_ * im_);
 }
 
+double complex::dist(complex const x, complex const y)
+{
+	complex r = x-y;
+	return r.abs();
+}
+
 
 double complex::phase() const {
     return atan(this->im_/this->re_);

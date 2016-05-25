@@ -68,6 +68,12 @@ public:
      */
     double abs() const;
 
+
+    /**
+     * Distancia de un complejo a otro.
+     */
+	double complex::dist(complex const, complex);
+
     /**
      * Fase de un número complejo. Este método devuelve la fase de un número
      * complejo.
