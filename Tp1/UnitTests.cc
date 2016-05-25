@@ -214,9 +214,9 @@ public:
 			input2.pushBack(*b);
 			inputsum.pushBack(*sum);
 		}
-		DFTcalculator::calculateDFT(input1, output1); 
-		DFTcalculator::calculateDFT(input2, output2); 
-		DFTcalculator::calculateDFT(inputsum, outputsum); 
+		DFTcalculator::calculateFT(input1, output1, method); 
+		DFTcalculator::calculateFT(input2, output2, method); 
+		DFTcalculator::calculateFT(inputsum, outputsum, method); 
 
 		//verificamos ahora que F(a+b) = F(a) + F(b), más allá de un error de truncamiento/representación acotado.
 		for (int i=0; i<n; i++)
@@ -251,8 +251,8 @@ public:
 			input1.pushBack(*a);
 			inputscalarmult.pushBack(*mult);
 		}
-		DFTcalculator::calculateDFT(input1, output1); 
-		DFTcalculator::calculateDFT(inputscalarmult, outputscalarmult); 
+		DFTcalculator::calculateFT(input1, output1, method); 
+		DFTcalculator::calculateFT(inputscalarmult, outputscalarmult, method); 
 
 		//verificamos ahora que F(ka) = kF(a), más allá de un error de truncamiento/representación acotado.
 		for (int i=0; i<n; i++)
@@ -350,7 +350,6 @@ public:
 int main(int argc, char** argv) 
 {
 	UnitTests* tests = new UnitTests();
-	/*
 	tests->TestFTOfZeroesIsZero();
 	tests->TestFTOfZeroesIsZeroForAllTransforms();
 	tests->TestFTOf11("fft");
@@ -361,9 +360,13 @@ int main(int argc, char** argv)
 	tests->TestIFTOf20("idft");
 	tests->TestIFTOf2i0("ifft");
 	tests->TestIFTOf2i0("idft");
-	*/
-	tests->TestFTAditivity("idft");
-	tests->TestFTHomogeneity("idft");
+
+	string fts[] = {"fft", "ifft", "dft", "idft"};
+	for (int i=0; i<4; i++)
+	{
+		tests->TestFTAditivity(fts[i]);
+		tests->TestFTHomogeneity(fts[i]);
+	}
 
 	return 0;
 }
