@@ -94,17 +94,29 @@ public:
 		return true;
 	}
 
-	bool TestFTOfZeroesIsZero(string method="fft")
+	bool TestFTOfZeroesIsZero(string method="fft", int n=2)
 	{
-		string input = "0 0 0 0";
-		string output;
-		Calculate(input, output);
+		string input = "";
+		for (int i=0; i<n; i++)
+		{
+			input = input + "0 ";
+		}
 		trim(input);
+
+		string expectedoutput = "";
+		for (int i=0; i<n; i++)
+		{
+			expectedoutput = expectedoutput + "(0.00,0.00) ";
+		}
+		trim(expectedoutput);
+
+		string output;
+		Calculate(input, output, method);
 		trim(output);
 		//imprimo data y result.
 		cout << "input: " << input << endl;
 		cout << "output: " << output << endl;
-		assert (output=="(0.00,0.00) (0.00,0.00) (0.00,0.00) (0.00,0.00)");
+		assert (output==expectedoutput);
 		return true;
 	}
 
