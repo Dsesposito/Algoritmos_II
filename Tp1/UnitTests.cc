@@ -1,3 +1,33 @@
+/* 
+ * File:   UnitTests.cpp
+ * Author: Diego / Marcelo
+ *
+ */
+
+
+#include <cstdlib>
+#include "vector.h"
+#include "complex.cc"
+#include <fstream>
+#include <iostream>
+#include <iomanip>
+#include <sstream>  
+#include <cmath>
+#include "cmdline.cc"
+#include "DFTcalculator.h"
+#include <ctime>
+
+using namespace std;
+
+#define OPT_DEFAULT   0
+#define OPT_SEEN      1
+#define OPT_MANDATORY 2
+
+static string method;
+static istream *is = NULL;	
+static ostream *os = NULL;	
+static fstream ifs; 		
+static fstream ofs;
 
 
 class UnitTests
@@ -15,9 +45,9 @@ private:
 	}
 
 public:
-	bool TestL2Distance()
+	bool TestL2Distance1()
 	{
-				
+		
 	}
 
 	bool TestFTOfZeroesIsZero(string algorithm)
@@ -61,3 +91,39 @@ public:
 	}
 
 };
+
+
+int main(int argc, char** argv) {
+		
+	string line;
+	while(getline(*is,line)){
+        //Creo un vector que almacenará la información leída
+        vector<complex> data = vector<complex>();
+        //Creo un vector que almacenará el resultado
+        vector<complex> result = vector<complex>();
+        istringstream iss(line);
+        iss >> data;
+        *os << std::setprecision(2);
+        *os << std::fixed;
+        //Dependiendo que ingreso el usuario hago una cosa u otra
+        if(method == "dft"){
+            //Calculo la DFT
+            DFTcalculator::calculateDFT(data,result); 
+        }
+        else if(method == "idft"){
+            //Calculo la DFT
+            DFTcalculator::calculateiDFT(data,result); 
+        }
+        else if(method == "fft"){
+            //Calculo la FFT
+            DFTcalculator::calculateFFT(data,result); 
+        }
+        else if(method == "ifft"){
+            //Calculo la iFFT
+            DFTcalculator::calculateiFFT(data,result); 
+        }
+        //Imprimo el resultado
+        *os << result;
+	}
+
+}
