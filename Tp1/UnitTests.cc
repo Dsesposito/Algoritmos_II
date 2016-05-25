@@ -323,7 +323,7 @@ public:
 
 		cout << "outputfast:" << outputfast << endl;
 		cout << "outputdiscrete:" << outputdiscrete << endl;
-
+		cout << endl;
 		//verificamos ahora que outputfast=outputdiscrete, más allá de un error de truncamiento/representación acotado.
 		for (int i=0; i<n; i++)
 		{
@@ -469,6 +469,7 @@ int main(int argc, char** argv)
 		tests->TestFastEqualsDiscrete(fts[i]);
 	}
 	tests->TestFTofIFT("fft");
+	tests->TestFTofIFT("dft");
 
 
 	return 0;

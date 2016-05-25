@@ -193,7 +193,14 @@ class DFTcalculator
         for(int i = 0 ; i < data.length() ; i++){
             initIndexes.pushBack(i);
         }
-	    FFTAlgorithm(data,result,initIndexes, method);
+		if ( method=="fft" || method=="ifft" )
+		{
+		    FFTAlgorithm(data,result,initIndexes, method);
+		}
+		else if ( method=="dft" || method=="idft" )
+		{
+	        bruteForceAlgorithm(data , result , method);
+		}
     }
 
 
