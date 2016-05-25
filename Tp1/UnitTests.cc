@@ -267,23 +267,122 @@ public:
 	bool TestFTOfSingleton(string method="fft")
 	{
 		//la transformada de un vector de un solo índice (v.g. "(5)") tiene que ser el mismo número.
+		vector<complex> input1 = vector<complex>();
+		vector<complex> output1 = vector<complex>();
+		complex* a = new complex();
+		a->setRandom(1,10);
+		input1.pushBack(*a);
+		DFTcalculator::calculateFT(input1, output1, method); 
+		//verificamos ahora que a = F(a), más allá de un error de truncamiento/representación acotado.
+		complex* d = new complex();
+		*d = input1[0] - output1[0];
+		assert (d->abs() < EPS);
+		return true;
+	}
+
+	bool TestFastEqualsDiscrete(string method="fft", int n=4)
+	{
+		string methodfast;
+		string methoddiscrete;
+		if (method=="fft")
+		{
+			methodfast="fft";
+			methoddiscrete= "dft";
+		}
+		else if (method=="ifft")
+		{
+			methodfast="ifft";
+			methoddiscrete= "idft";
+		}
+		else if (method=="dft")
+		{
+			methodfast="fft";
+			methoddiscrete= "dft";
+		}
+		else if (method=="idft")
+		{
+			methodfast="ifft";
+			methoddiscrete= "idft";
+		}
+
+		//testeamos -tanto para la transformada, como para la transformada inversa- que el método via la definición ("discrete")
+		//sea igual al resultado del método mediante el algoritmo rápido ("fast").
+		vector<complex> input1 = vector<complex>();
+		vector<complex> outputfast = vector<complex>();
+		vector<complex> outputdiscrete = vector<complex>();
+
+		//lleno los dos vectores input1, input2 con numeros complejos al azar dentro del intervalo [1;10]
+		for (int i=0; i<n; i++)
+		{
+			complex* a = new complex();
+			a->setRandom(1,10);
+			input1.pushBack(*a);
+		}
+		DFTcalculator::calculateFT(input1, outputfast, methodfast); 
+		DFTcalculator::calculateFT(input1, outputdiscrete, methoddiscrete); 
+
+		cout << "outputfast:" << outputfast << endl;
+		cout << "outputdiscrete:" << outputdiscrete << endl;
+
+		//verificamos ahora que outputfast=outputdiscrete, más allá de un error de truncamiento/representación acotado.
+		for (int i=0; i<n; i++)
+		{
+			complex* d = new complex();
+			*d = (outputfast[i]) - outputdiscrete[i];
+			//assert (d->abs() < EPS);
+		}
+		return true;
 	}
 
 
 
-	bool TestFTofIFT(string method="fft")
+	bool TestFTofIFT(string method="fft", int n=4)
 	{
+		string func;
+		string inversefunc;
+		if (method=="fft")
+		{
+			func="fft";
+			inversefunc = "ifft";
+		}
+		else if (method=="ifft")
+		{
+			func="ifft";
+			inversefunc = "fft";
+		}
+		else if (method=="dft")
+		{
+			func="dft";
+			inversefunc = "idft";
+		}
+		else if (method=="idft")
+		{
+			func="idft";
+			inversefunc = "dft";
+		}
 
-	}
+		// F( F'1(a) ) = a		(inversa a derecha)
+		vector<complex> a = vector<complex>();
+		vector<complex> b = vector<complex>();
+		vector<complex> c = vector<complex>();
 
-	bool TestIFTofFT(string method="fft")
-	{
-
-	}
-
-	bool TestDual(string method="fft")
-	{
-
+		//lleno el vector input1 con numeros al azar dentro del intervalo [1;10]
+		for (int i=0; i<n; i++)
+		{
+			complex* ca = new complex();
+			ca->setRandom(1,10);
+			a.pushBack(*ca);
+		}
+		DFTcalculator::calculateFT(a, b, func);
+		DFTcalculator::calculateFT(b, c, inversefunc);
+		for (int i=0; i<n; i++)
+		{
+			complex* d = new complex();
+			*d = a[i] - c[i];
+			cout << *d << " ";
+			assert (d->abs() < EPS);
+		}
+		return true;
 	}
 
 	bool TestBessel(string method="fft")
@@ -351,7 +450,7 @@ int main(int argc, char** argv)
 {
 	UnitTests* tests = new UnitTests();
 	tests->TestFTOfZeroesIsZero();
-	tests->TestFTOfZeroesIsZeroForAllTransforms();
+	//tests->TestFTOfZeroesIsZeroForAllTransforms();
 	tests->TestFTOf11("fft");
 	tests->TestFTOf11("dft");
 	tests->TestFTOfii("fft");
@@ -366,7 +465,11 @@ int main(int argc, char** argv)
 	{
 		tests->TestFTAditivity(fts[i]);
 		tests->TestFTHomogeneity(fts[i]);
+		tests->TestFTOfSingleton(fts[i]);
+		tests->TestFastEqualsDiscrete(fts[i]);
 	}
+	tests->TestFTofIFT("fft");
+
 
 	return 0;
 }
