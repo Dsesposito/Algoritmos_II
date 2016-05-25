@@ -16,6 +16,7 @@
 #include "cmdline.h"
 #include "DFTcalculator.h"
 #include <ctime>
+//#include "libs/plog/Log.h"
 
 using namespace std;
 
@@ -62,7 +63,7 @@ static void opt_output(string const &arg){
 
 static void opt_help(string const &arg){
     cout << "cmdline [-m \"dft\" \"idft\" \"fft\" \"ifft\"] [-i file] [-o file]" << endl;
-    cout << "The default input output are the standar IO.";
+    cout << "The default input output are the standard IO.";
     cout << "The default method is the discrete fast fourier transform (fft).";
     exit(0);
 }
@@ -97,17 +98,15 @@ int main(int argc, char** argv) {
         
         //Creo un vector que almacenará la información leída
         vector<complex> data = vector<complex>();
+        
+        //Creo un vector que almacenará el resultado
+        vector<complex> result = vector<complex>();
        
         istringstream iss(line);
         iss >> data;
-
-        //Creo un vector que almacenará el resultado
-        vector<complex> result = vector<complex>(data.length());
         
         *os << std::setprecision(2);
         *os << std::fixed;
-        
-        
         
         //Dependiendo que ingreso el usuario hago una cosa u otra
         if(method == "dft"){
@@ -129,6 +128,14 @@ int main(int argc, char** argv) {
 
         //Imprimo el resultado
         *os << result;
+
+
+		//imprimo data y result.
+		cout << "Longitud vector data: " << data.length() << endl;
+		cout << "Longitud vector result: " << result.length() << endl;
+		cout << "data: " << data << endl;
+		cout << "result: " << result << endl;
+
     }
     return 0;
 }
