@@ -7,13 +7,13 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complex.h"
+#include "complex.cc"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <sstream>  
 #include <cmath>
-#include "cmdline.h"
+#include "cmdline.cc"
 #include "DFTcalculator.h"
 #include <ctime>
 //#include "libs/plog/Log.h"
@@ -62,9 +62,12 @@ static void opt_output(string const &arg){
 }
 
 static void opt_help(string const &arg){
-    cout << "cmdline [-m \"dft\" \"idft\" \"fft\" \"ifft\"] [-i file] [-o file]" << endl;
+	cout << endl;
+	cout << "cmdline [-m \"dft\" \"idft\" \"fft\" \"ifft\"] [-i file] [-o file]" << endl;
+	cout << endl;
     cout << "The default input output are the standard IO.";
     cout << "The default method is the discrete fast fourier transform (fft).";
+	cout << endl;
     exit(0);
 }
 
@@ -129,6 +132,11 @@ int main(int argc, char** argv) {
         //Imprimo el resultado
         *os << result;
 
+		std::ostringstream stream;
+		stream << result;
+		std::string str =  stream.str();
+		const char* chr = str.c_str();
+		cout << "Ouput:" << str;
 
 		//imprimo data y result.
 		cout << "Longitud vector data: " << data.length() << endl;
