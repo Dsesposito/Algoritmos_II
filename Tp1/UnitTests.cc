@@ -122,7 +122,7 @@ public:
 			std::string str =  stream.str();
 			const char* chr = str.c_str();
 			cout << "Ouput:" << str;
-			//output = result;
+			output = stream.str();
 		}
 	}
 
