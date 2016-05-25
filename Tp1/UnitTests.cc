@@ -394,8 +394,19 @@ public:
 
 	bool TestParseval(string method="fft", int n=4)
 	{
-		//si es a tal que ||a||2=L, luego vale: ||F(a)||2=L (igualdad de Parseval)
+		//si es a tal que ||a||2=L, luego vale: ||F(a)||2=nL (igualdad de Parseval), donde n es la longitud de a
 		//esto es, la transformada de Fourier preserva la norma2.
+		double multiplier=n;
+		if (method=="fft" || method=="dft")
+		{
+			multiplier = n;
+		}
+		else if (method=="ifft" || method=="idft")
+		{
+			multiplier = 1/((double) n);
+		}
+
+
 		vector<complex> input = vector<complex>();
 		vector<complex> output = vector<complex>();
 
@@ -429,7 +440,10 @@ public:
 		}
 		double outputnorm = sum;
 
-		assert( inputnorm - outputnorm < EPS );
+		cout << "input norm: " << inputnorm << endl;
+		cout << "output norm/" << multiplier << ": " << outputnorm/multiplier << endl;
+
+		assert( abs(inputnorm - outputnorm/multiplier) < EPS );
 		return true;
 	}
 
@@ -492,7 +506,7 @@ int main(int argc, char** argv)
 
 	UnitTests* tests = new UnitTests();
 	tests->TestFTOfZeroesIsZero();
-	tests->TestFTOfZeroesIsZeroForAllTransforms();
+	//tests->TestFTOfZeroesIsZeroForAllTransforms();
 	tests->TestFTOf11("fft");
 	tests->TestFTOf11("dft");
 	tests->TestFTOfii("fft");
@@ -513,10 +527,11 @@ int main(int argc, char** argv)
 			tests->TestFTHomogeneity(fts[i], m);
 			tests->TestFastEqualsDiscrete(fts[i], m);
 			tests->TestFTofIFT(fts[i], m);
+			tests->TestParseval(fts[i], m);
+			tests->TestParseval(fts[i], m);
+
 		}
 	}
-	tests->TestParseval("fft");
-	tests->TestParseval("dft");
 
 	return 0;
 }
