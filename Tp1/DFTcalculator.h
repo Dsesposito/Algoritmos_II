@@ -183,4 +183,18 @@ class DFTcalculator
         FFTAlgorithm(data,result,initIndexes,"ifft");
     }
 
+
+    /*
+     * Otro método posible para los mismos efectos (otra interfaz distinta)
+     */
+    static void calculateFT(vector<complex> & data , vector<complex> & result, string method){
+        DFTcalculator::fillMinPower2(data);
+        vector<int> initIndexes = vector<int>();
+        for(int i = 0 ; i < data.length() ; i++){
+            initIndexes.pushBack(i);
+        }
+	    FFTAlgorithm(data,result,initIndexes, method);
+    }
+
+
 };

@@ -29,6 +29,9 @@ using namespace std;
 #define OPT_SEEN      1
 #define OPT_MANDATORY 2
 
+#define EPS		0.001
+#define NMAX	10
+
 static string method;
 static istream *is = NULL;	
 static ostream *os = NULL;	
@@ -86,7 +89,6 @@ private:
 public:
 	bool TestFTOfZeroesIsZeroForAllTransforms()
 	{
-		int NMAX = 10;
 		for (int n=0; n<NMAX; n++)
 		{
 			int m = pow((long double) 2, (int) n);
@@ -188,8 +190,9 @@ public:
 	}
 
 
-	bool TestFTOfSum(string method="fft", int n=4)
+	bool TestFTAditivity(string method="fft", int n=4)
 	{
+		//al ser FFT, DFT, iDFT, iFFT operadores lineales, todos ellos verifican F(a+b)=F(a)+F(b) (aditividad)
 		vector<complex> input1 = vector<complex>();
 		vector<complex> input2 = vector<complex>();
 		vector<complex> inputsum = vector<complex>();
@@ -211,28 +214,62 @@ public:
 			input2.pushBack(*b);
 			inputsum.pushBack(*sum);
 		}
-
 		DFTcalculator::calculateDFT(input1, output1); 
 		DFTcalculator::calculateDFT(input2, output2); 
 		DFTcalculator::calculateDFT(inputsum, outputsum); 
 
-		//verificamos ahora que F(a+b) = F(a) + F(b):
-		cout << input1 << endl;
-		cout << input2 << endl;
-		cout << inputsum << endl;
-		cout << endl;
-		cout << output1 << endl;
-		cout << output2 << endl;
-		cout << outputsum << endl;
-
-
+		//verificamos ahora que F(a+b) = F(a) + F(b), más allá de un error de truncamiento/representación acotado.
+		for (int i=0; i<n; i++)
+		{
+			complex* d = new complex();
+			*d = (output1[i] + output2[i]) - outputsum[i];
+			assert (d->abs() < EPS);
+		}
 		return true;
 	}
 
-	bool TestFTOfScalar(string method="fft")
+	bool TestFTHomogeneity(string method="fft", int n=4)
 	{
+		//al ser FFT, DFT, iDFT, iFFT operadores lineales, todos ellos verifican F(ka)=kF(a) (homogeneidad)
+		vector<complex> input1 = vector<complex>();
+		vector<complex> input2 = vector<complex>();
+		vector<complex> inputscalarmult = vector<complex>();
 
+		vector<complex> output1 = vector<complex>();
+		vector<complex> output2 = vector<complex>();
+		vector<complex> outputscalarmult = vector<complex>();
+
+		//lleno los dos vectores input1, input2 con numeros complejos al azar dentro del intervalo [1;10]
+		complex* k = new complex();
+		k->setRandom(1,10);
+		for (int i=0; i<n; i++)
+		{
+			complex* a = new complex();
+			complex* mult = new complex();
+			a->setRandom(1,10);
+			*mult = *k * *a;
+			input1.pushBack(*a);
+			inputscalarmult.pushBack(*mult);
+		}
+		DFTcalculator::calculateDFT(input1, output1); 
+		DFTcalculator::calculateDFT(inputscalarmult, outputscalarmult); 
+
+		//verificamos ahora que F(ka) = kF(a), más allá de un error de truncamiento/representación acotado.
+		for (int i=0; i<n; i++)
+		{
+			complex* d = new complex();
+			*d = (*k * output1[i]) - outputscalarmult[i];
+			assert (d->abs() < EPS);
+		}
+		return true;
 	}
+
+	bool TestFTOfSingleton(string method="fft")
+	{
+		//la transformada de un vector de un solo índice (v.g. "(5)") tiene que ser el mismo número.
+	}
+
+
 
 	bool TestFTofIFT(string method="fft")
 	{
@@ -325,7 +362,8 @@ int main(int argc, char** argv)
 	tests->TestIFTOf2i0("ifft");
 	tests->TestIFTOf2i0("idft");
 	*/
-	tests->TestFTOfSum("idft");
+	tests->TestFTAditivity("idft");
+	tests->TestFTHomogeneity("idft");
 
 	return 0;
 }
