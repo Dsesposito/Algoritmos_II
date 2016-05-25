@@ -101,6 +101,8 @@ public:
 
 	bool TestFTOfZeroesIsZero(string method="fft", int n=2)
 	{
+		//para un string de entrada de la forma: 0 0 0 0, el resultado de aplicar la TF (bien sea FFT, iFFT, DFT, iDFT)
+		//debe ser un string de la forma (0.00,0.00) (0.00,0.00) (0.00,0.00) (0.00,0.00)
 		string input = "";
 		for (int i=0; i<n; i++)
 		{
@@ -127,13 +129,64 @@ public:
 
 	bool TestFTOf11(string method="fft")
 	{
+		string input ="1 1";
+		string expectedoutput = "(2.00,0.00) (0.00,0.00)";
+		string output;
 
+		Calculate(input, output, method);
+		trim(output);
+		//imprimo data y result.
+		cout << "input: " << input << endl;
+		cout << "output: " << output << endl;
+		assert (output==expectedoutput);
+		return true;
 	}
 
 	bool TestFTOfii(string method="fft")
 	{
+		string input ="(0,1) (0,1)";
+		string expectedoutput = "(0.00,2.00) (-0.00,0.00)";
+		string output;
 
+		Calculate(input, output, method);
+		trim(output);
+		//imprimo data y result.
+		cout << "input: " << input << endl;
+		cout << "output: " << output << endl;
+		assert (output==expectedoutput);
+		return true;
 	}
+
+	bool TestIFTOf20(string method="ifft")
+	{
+		string input ="2 0";
+		string expectedoutput = "(1.00,0.00) (1.00,0.00)";
+		string output;
+
+		Calculate(input, output, method);
+		trim(output);
+		//imprimo data y result.
+		cout << "input: " << input << endl;
+		cout << "output: " << output << endl;
+		assert (output==expectedoutput);
+		return true;
+	}
+
+	bool TestIFTOf2i0(string method="ifft")
+	{
+		string input ="(0.00,2.00) (0.00,0.00)";
+		string expectedoutput = "(0.00,1.00) (0.00,1.00)";
+		string output;
+
+		Calculate(input, output, method);
+		trim(output);
+		//imprimo data y result.
+		cout << "input: " << input << endl;
+		cout << "output: " << output << endl;
+		assert (output==expectedoutput);
+		return true;
+	}
+
 
 	bool TestFTOfSum(string method="fft")
 	{
@@ -156,6 +209,16 @@ public:
 	}
 
 	bool TestDual(string method="fft")
+	{
+
+	}
+
+	bool TestBessel(string method="fft")
+	{
+
+	}
+
+	bool TestParseval(string method="fft")
 	{
 
 	}
@@ -216,6 +279,15 @@ int main(int argc, char** argv)
 	UnitTests* tests = new UnitTests();
 	tests->TestFTOfZeroesIsZero();
 	tests->TestFTOfZeroesIsZeroForAllTransforms();
+	tests->TestFTOf11("fft");
+	tests->TestFTOf11("dft");
+	tests->TestFTOfii("fft");
+	tests->TestFTOfii("dft");
+	tests->TestIFTOf20("ifft");
+	tests->TestIFTOf20("idft");
+	tests->TestIFTOf2i0("ifft");
+	tests->TestIFTOf2i0("idft");
+
 	return 0;
 }
 
