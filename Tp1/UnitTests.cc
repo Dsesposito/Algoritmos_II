@@ -87,10 +87,16 @@ private:
 public:
 	bool TestFTOfZeroesIsZeroForAllTransforms()
 	{
-		TestFTOfZeroesIsZero("fft");
-		TestFTOfZeroesIsZero("dft");
-		TestFTOfZeroesIsZero("ifft");
-		TestFTOfZeroesIsZero("idft");
+		int NMAX = 10;
+		for (int n=0; n<NMAX; n++)
+		{
+			int m = pow((long double) 2, (int) n);
+			cout << m;
+			TestFTOfZeroesIsZero("fft", m);
+			TestFTOfZeroesIsZero("dft", m);
+			TestFTOfZeroesIsZero("ifft", m);
+			TestFTOfZeroesIsZero("idft", m);
+		}
 		return true;
 	}
 
