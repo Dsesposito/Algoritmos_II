@@ -188,9 +188,45 @@ public:
 	}
 
 
-	bool TestFTOfSum(string method="fft")
+	bool TestFTOfSum(string method="fft", int n=4)
 	{
+		vector<complex> input1 = vector<complex>();
+		vector<complex> input2 = vector<complex>();
+		vector<complex> inputsum = vector<complex>();
 
+		vector<complex> output1 = vector<complex>();
+		vector<complex> output2 = vector<complex>();
+		vector<complex> outputsum = vector<complex>();
+
+		//lleno los dos vectores input1, input2 con numeros complejos al azar dentro del intervalo [1;10]
+		for (int i=0; i<n; i++)
+		{
+			complex* a = new complex();
+			complex* b = new complex();
+			complex* sum = new complex();
+			a->setRandom(1,10);
+			b->setRandom(1,10);
+			*sum = *a + *b;
+			input1.pushBack(*a);
+			input2.pushBack(*b);
+			inputsum.pushBack(*sum);
+		}
+
+		DFTcalculator::calculateDFT(input1, output1); 
+		DFTcalculator::calculateDFT(input2, output2); 
+		DFTcalculator::calculateDFT(inputsum, outputsum); 
+
+		//verificamos ahora que F(a+b) = F(a) + F(b):
+		cout << input1 << endl;
+		cout << input2 << endl;
+		cout << inputsum << endl;
+		cout << endl;
+		cout << output1 << endl;
+		cout << output2 << endl;
+		cout << outputsum << endl;
+
+
+		return true;
 	}
 
 	bool TestFTOfScalar(string method="fft")
@@ -277,6 +313,7 @@ public:
 int main(int argc, char** argv) 
 {
 	UnitTests* tests = new UnitTests();
+	/*
 	tests->TestFTOfZeroesIsZero();
 	tests->TestFTOfZeroesIsZeroForAllTransforms();
 	tests->TestFTOf11("fft");
@@ -287,6 +324,8 @@ int main(int argc, char** argv)
 	tests->TestIFTOf20("idft");
 	tests->TestIFTOf2i0("ifft");
 	tests->TestIFTOf2i0("idft");
+	*/
+	tests->TestFTOfSum("idft");
 
 	return 0;
 }

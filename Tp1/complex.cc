@@ -5,6 +5,12 @@
 
 using namespace std;
 
+double fRand(double fMin, double fMax)
+{
+    double f = (double)rand() / RAND_MAX;
+    return fMin + f * (fMax - fMin);
+}
+
 complex::complex() : re_(0), im_(0) {}
 
 complex::complex(double r) : re_(r), im_(0){}
@@ -32,6 +38,16 @@ double complex::im() const {
 double complex::abs() const {
     return std::sqrt(re_ * re_ + im_ * im_);
 }
+
+complex complex::setRandom(double from, double to)
+{
+	double re = fRand(from, to);
+	double im = fRand(from, to);
+	re_ = re;
+	im_ = im;
+	return complex(re, im);
+}
+
 
 double complex::dist(complex const x, complex const y)
 {

@@ -68,6 +68,13 @@ public:
      */
     double abs() const;
 
+    /**
+     * Setea al complejo como un numero al azar con:
+	 * Re perteneciente al intervalo [from;to]
+	 * Im perteneciente al intervalo [from;to]
+     */
+	complex complex::setRandom(double from, double to);
+
 
     /**
      * Distancia de un complejo a otro.
