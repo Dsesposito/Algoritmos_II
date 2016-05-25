@@ -467,9 +467,8 @@ int main(int argc, char** argv)
 		tests->TestFTHomogeneity(fts[i]);
 		tests->TestFTOfSingleton(fts[i]);
 		tests->TestFastEqualsDiscrete(fts[i]);
+		tests->TestFTofIFT(fts[i]);
 	}
-	tests->TestFTofIFT("fft");
-	tests->TestFTofIFT("dft");
 
 
 	return 0;
