@@ -85,6 +85,15 @@ private:
 	}
 
 public:
+	bool TestFTOfZeroesIsZeroForAllTransforms()
+	{
+		TestFTOfZeroesIsZero("fft");
+		TestFTOfZeroesIsZero("dft");
+		TestFTOfZeroesIsZero("ifft");
+		TestFTOfZeroesIsZero("idft");
+		return true;
+	}
+
 	bool TestFTOfZeroesIsZero(string method="fft")
 	{
 		string input = "0 0 0 0";
@@ -188,7 +197,8 @@ public:
 int main(int argc, char** argv) 
 {
 	UnitTests* tests = new UnitTests();
-	cout << tests->TestFTOfZeroesIsZero();
+	tests->TestFTOfZeroesIsZero();
+	tests->TestFTOfZeroesIsZeroForAllTransforms();
 	return 0;
 }
 
