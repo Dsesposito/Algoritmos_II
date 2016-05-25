@@ -12,6 +12,8 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <stack>
+#include <math.h>  
 
 #ifndef M_PI
     #define M_PI 3.14159265358979323846
@@ -28,8 +30,8 @@ class DFTcalculator
         
         
     /**
-     * Metodo privado estatico calculate. Este metodo permite calcular tanto la
-     * transformada como la anti transformada de fourier. Es un metodo privado que
+     * Método privado estatico calculate. Este método permite calcular tanto la
+     * transformada como la anti transformada de fourier. Es un método privado que
      * utiliza la clase.
      */
     static void bruteForceAlgorithm(const vector<complex> & data , vector<complex> & result , string algorithm){
@@ -53,6 +55,9 @@ class DFTcalculator
         }
     } 
 
+    /*
+     * Implementación del algoritmo de la FFT
+     */
     static void FFTAlgorithm(const vector<complex> & data , vector<complex> & result , vector<int> & indexes,string algorithm){
 
         int sign = 1;
@@ -107,6 +112,10 @@ class DFTcalculator
         
     }  
 
+    /*
+     * Este método permite llenar un arreglo con ceros hasta llegar a la mínima
+     * potencia de 2.
+     */
     static void fillMinPower2(vector<complex> & data){
         //Si el largo no es potencia de 2 completo con ceros
         int dataLength = data.length();
@@ -140,7 +149,10 @@ class DFTcalculator
         bruteForceAlgorithm(data , result , "idft");
     }
     
-    
+    /**
+     * Este método permite calcular la transformada de fourier utilizando el algoritmo
+     * de la fft
+     */
     static void calculateFFT(vector<complex> & data , vector<complex> & result){
         DFTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
@@ -150,7 +162,10 @@ class DFTcalculator
         FFTAlgorithm(data,result,initIndexes,"fft");
     }
     
-        
+    /*
+     * Este método permite calcular la inversa de la transformada de fourier utilizando
+     * el algoritmo de la fft.
+     */    
     static void calculateiFFT(vector<complex> & data , vector<complex> & result){
         DFTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();

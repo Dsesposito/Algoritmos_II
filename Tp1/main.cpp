@@ -97,13 +97,13 @@ int main(int argc, char** argv) {
         
         //Creo un vector que almacenará la información leída
         vector<complex> data = vector<complex>();
-        
-        //Creo un vector que almacenará el resultado
-        vector<complex> result = vector<complex>();
-        
+       
         istringstream iss(line);
         iss >> data;
 
+        //Creo un vector que almacenará el resultado
+        vector<complex> result = vector<complex>(data.length());
+        
         *os << std::setprecision(2);
         *os << std::fixed;
         

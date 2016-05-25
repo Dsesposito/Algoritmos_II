@@ -114,11 +114,19 @@ class vector{
             this->size++;
         }
         
+        /*
+         * Este método remueve del arreglo el último elemento agregado.
+         */
         T & popBack(){
             this->size--;
             return this->pv[this->size - 1];
         }
         
+        /*
+         * Este método permite obtener una determinada posición del arreglo, si 
+         * la posición es mayor al largo del arreglo, vuelve a empezar a contar
+         * desde la posición inicial.
+         */
         T & getCircular(int index){
             if(index >= this->size){
                 return this->pv[index -  this->size];
