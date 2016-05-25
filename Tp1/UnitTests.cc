@@ -50,7 +50,7 @@ public:
 		
 	}
 
-	bool TestFTOfZeroesIsZero(string algorithm)
+	bool TestFTOfZeroesIsZero()
 	{
 
 	}
@@ -92,38 +92,57 @@ public:
 
 	void Calculate(string input, string& output)
 	{
+		string method = "dft";
 		string line = input;
-		while(getline(*is,line)){
-			vector<complex> data = vector<complex>();
-			vector<complex> result = vector<complex>();
-			istringstream iss(line);
-			iss >> data;
-			*os << std::setprecision(2);
-			*os << std::fixed;
-			if(method == "dft"){
-				//Calculo la DFT
-				DFTcalculator::calculateDFT(data,result); 
-			}
-			else if(method == "idft"){
-				//Calculo la DFT
-				DFTcalculator::calculateiDFT(data,result); 
-			}
-			else if(method == "fft"){
-				//Calculo la FFT
-				DFTcalculator::calculateFFT(data,result); 
-			}
-			else if(method == "ifft"){
-				//Calculo la iFFT
-				DFTcalculator::calculateiFFT(data,result); 
-			}
 
-			std::ostringstream stream;
-			stream << result;
-			std::string str =  stream.str();
-			const char* chr = str.c_str();
-			cout << "Ouput:" << str;
-			output = stream.str();
+		os = &cout;
+
+		//Creo un vector que almacenará la información leída
+		vector<complex> data = vector<complex>();
+		//Creo un vector que almacenará el resultado
+		vector<complex> result = vector<complex>();
+       
+		istringstream iss(line);
+		iss >> data;
+		*os << std::setprecision(2);
+		*os << std::fixed;
+        
+		//Dependiendo que ingreso el usuario hago una cosa u otra
+		if(method == "dft"){
+			//Calculo la DFT
+			DFTcalculator::calculateDFT(data,result); 
 		}
+		else if(method == "idft"){
+			//Calculo la DFT
+			DFTcalculator::calculateiDFT(data,result); 
+		}
+		else if(method == "fft"){
+			//Calculo la FFT
+			DFTcalculator::calculateFFT(data,result); 
+		}
+		else if(method == "ifft"){
+			//Calculo la iFFT
+			DFTcalculator::calculateiFFT(data,result); 
+		}
+
+		//Imprimo el resultado
+        *os << std::setprecision(2);
+        *os << std::fixed;
+		*os << result;
+
+		std::ostringstream stream;
+		stream << result;
+		std::string str =  stream.str();
+		const char* chr = str.c_str();
+		//cout << "Ouput:" << chr;
+		output = chr;
+
+
+		//imprimo data y result.
+		cout << "Longitud vector data: " << data.length() << endl;
+		cout << "Longitud vector result: " << result.length() << endl;
+		cout << "data: " << data << endl;
+		cout << "result: " << result << endl;
 	}
 
 };
@@ -131,6 +150,15 @@ public:
 
 int main(int argc, char** argv) 
 {
+	UnitTests* tests = new UnitTests();
+	string input = "1 1 1 0";
+	string output;
+	tests->Calculate(input, output);
+
+	//imprimo data y result.
+	cout << "input: " << input << endl;
+	cout << "output: " << output << endl;
+	return 0;
 
 }
 
