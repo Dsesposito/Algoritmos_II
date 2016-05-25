@@ -338,6 +338,8 @@ public:
 
 	bool TestFTofIFT(string method="fft", int n=4)
 	{
+		//testeamos -tanto para la transformada como para la antitransformada, tanto en version discreta como rápida- que valgan
+		//las siguientes identidades funcionales: F(F-1(a))=F-1(F(a))=a
 		string func;
 		string inversefunc;
 		if (method=="fft")
@@ -390,9 +392,45 @@ public:
 
 	}
 
-	bool TestParseval(string method="fft")
+	bool TestParseval(string method="fft", int n=4)
 	{
+		//si es a tal que ||a||2=L, luego vale: ||F(a)||2=L (igualdad de Parseval)
+		//esto es, la transformada de Fourier preserva la norma2.
+		vector<complex> input = vector<complex>();
+		vector<complex> output = vector<complex>();
 
+		//lleno el vector input con numeros al azar dentro del intervalo [1;10]
+		for (int i=0; i<n; i++)
+		{
+			complex* z = new complex();
+			z->setRandom(1,10);
+			input.pushBack(*z);
+		}
+		//calculamos la norma2 de input:
+		double sum=0;
+		for (int i=0; i<n; i++)
+		{
+			complex* z2 = new complex();
+			*z2 = input[i] * input[i];
+			sum = sum + z2->abs();
+		}
+		double inputnorm = sum;
+
+		//transformamos...
+		DFTcalculator::calculateFT(input, output, method);
+		
+		//calculamos la norma2 de output:
+		sum=0;
+		for (int i=0; i<n; i++)
+		{
+			complex* z2 = new complex();
+			*z2 = output[i] * output[i];
+			sum = sum + z2->abs();
+		}
+		double outputnorm = sum;
+
+		assert( inputnorm - outputnorm < EPS );
+		return true;
 	}
 
 	void Calculate(string input, string& output, string method="fft")
@@ -448,9 +486,13 @@ public:
 
 int main(int argc, char** argv) 
 {
+	//chequeamos a continuación con esta clase de tests que se cumplan una serie de propiedades fundamentales
+	//que caracterizan a la DFT y a la iDFT (tanto en sus versiones discretas, como en sus versiones rápidas: FFT, iFFT)
+	//Para cubrir más casos con menos código, parametrizamos las pruebas
+
 	UnitTests* tests = new UnitTests();
 	tests->TestFTOfZeroesIsZero();
-	//tests->TestFTOfZeroesIsZeroForAllTransforms();
+	tests->TestFTOfZeroesIsZeroForAllTransforms();
 	tests->TestFTOf11("fft");
 	tests->TestFTOf11("dft");
 	tests->TestFTOfii("fft");
@@ -463,13 +505,18 @@ int main(int argc, char** argv)
 	string fts[] = {"fft", "ifft", "dft", "idft"};
 	for (int i=0; i<4; i++)
 	{
-		tests->TestFTAditivity(fts[i]);
-		tests->TestFTHomogeneity(fts[i]);
 		tests->TestFTOfSingleton(fts[i]);
-		tests->TestFastEqualsDiscrete(fts[i]);
-		tests->TestFTofIFT(fts[i]);
+		for (int j=0; j<NMAX; j++)
+		{
+			int m = pow((long double) 2, (int) j);
+			tests->TestFTAditivity(fts[i], m);
+			tests->TestFTHomogeneity(fts[i], m);
+			tests->TestFastEqualsDiscrete(fts[i], m);
+			tests->TestFTofIFT(fts[i], m);
+		}
 	}
-
+	tests->TestParseval("fft");
+	tests->TestParseval("dft");
 
 	return 0;
 }
