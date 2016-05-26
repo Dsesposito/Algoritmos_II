@@ -30,7 +30,7 @@ using namespace std;
 #define OPT_MANDATORY 2
 
 #define EPS		0.001
-#define NMAX	10
+#define NMAX	4
 
 static string method;
 static istream *is = NULL;	
@@ -89,6 +89,8 @@ private:
 public:
 	bool TestFTOfZeroesIsZeroForAllTransforms()
 	{
+		cout << endl << endl << endl << "TestFTOfZeroesIsZeroForAllTransforms();" << endl << endl;
+
 		for (int n=0; n<NMAX; n++)
 		{
 			int m = pow((long double) 2, (int) n);
@@ -98,11 +100,13 @@ public:
 			TestFTOfZeroesIsZero("ifft", m);
 			TestFTOfZeroesIsZero("idft", m);
 		}
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestFTOfZeroesIsZero(string method="fft", int n=2)
 	{
+		cout << endl << endl << endl << "TestFTOfZeroesIsZero(" << method << ", " << n << ");" << endl << endl;
 		//para un string de entrada de la forma: 0 0 0 0, el resultado de aplicar la TF (bien sea FFT, iFFT, DFT, iDFT)
 		//debe ser un string de la forma (0.00,0.00) (0.00,0.00) (0.00,0.00) (0.00,0.00)
 		string input = "";
@@ -126,11 +130,15 @@ public:
 		cout << "input: " << input << endl;
 		cout << "output: " << output << endl;
 		assert (output==expectedoutput);
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestFTOf11(string method="fft")
 	{
+		cout << endl << endl << endl << "TestFTOf11(" << method << ");" << endl << endl;
+
 		string input ="1 1";
 		string expectedoutput = "(2.00,0.00) (0.00,0.00)";
 		string output;
@@ -141,11 +149,15 @@ public:
 		cout << "input: " << input << endl;
 		cout << "output: " << output << endl;
 		assert (output==expectedoutput);
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestFTOfii(string method="fft")
 	{
+		cout << endl << endl << endl << "TestFTOfii(" << method << ");" << endl << endl;
+
 		string input ="(0,1) (0,1)";
 		string expectedoutput = "(0.00,2.00) (-0.00,0.00)";
 		string output;
@@ -156,11 +168,15 @@ public:
 		cout << "input: " << input << endl;
 		cout << "output: " << output << endl;
 		assert (output==expectedoutput);
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestIFTOf20(string method="ifft")
 	{
+		cout << endl << endl << endl << "TestIFTOf20(" << method << ");" << endl << endl;
+
 		string input ="2 0";
 		string expectedoutput = "(1.00,0.00) (1.00,0.00)";
 		string output;
@@ -171,11 +187,15 @@ public:
 		cout << "input: " << input << endl;
 		cout << "output: " << output << endl;
 		assert (output==expectedoutput);
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestIFTOf2i0(string method="ifft")
 	{
+		cout << endl << endl << endl << "TestIFTOf2i0(" << method << ");" << endl << endl;
+
 		string input ="(0.00,2.00) (0.00,0.00)";
 		string expectedoutput = "(0.00,1.00) (0.00,1.00)";
 		string output;
@@ -186,6 +206,8 @@ public:
 		cout << "input: " << input << endl;
 		cout << "output: " << output << endl;
 		assert (output==expectedoutput);
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
@@ -193,6 +215,9 @@ public:
 	bool TestFTAditivity(string method="fft", int n=4)
 	{
 		//al ser FFT, DFT, iDFT, iFFT operadores lineales, todos ellos verifican F(a+b)=F(a)+F(b) (aditividad)
+
+		cout << endl << endl << endl << "TestFTAditivity(" << method << ", " << n << ");" << endl << endl;
+
 		vector<complex> input1 = vector<complex>();
 		vector<complex> input2 = vector<complex>();
 		vector<complex> inputsum = vector<complex>();
@@ -232,18 +257,20 @@ public:
 			*d = (output1[i] + output2[i]) - outputsum[i];
 			assert (d->abs() < EPS);
 		}
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestFTHomogeneity(string method="fft", int n=4)
 	{
 		//al ser FFT, DFT, iDFT, iFFT operadores lineales, todos ellos verifican F(ka)=kF(a) (homogeneidad)
+		cout << endl << endl << endl << "TestFTHomogeneity(" << method << ", " << n << ");" << endl << endl;
+
 		vector<complex> input1 = vector<complex>();
-		vector<complex> input2 = vector<complex>();
 		vector<complex> inputscalarmult = vector<complex>();
 
 		vector<complex> output1 = vector<complex>();
-		vector<complex> output2 = vector<complex>();
 		vector<complex> outputscalarmult = vector<complex>();
 
 		//lleno los dos vectores input1, input2 con numeros complejos al azar dentro del intervalo [1;10]
@@ -262,10 +289,9 @@ public:
 		DFTcalculator::calculateFT(inputscalarmult, outputscalarmult, method); 
 
 		cout << "input1: " << input1 << endl;
-		cout << "input2: " << input2 << endl;
-		cout << "inputsclaramult: " << inputscalarmult << endl;
+		cout << "k: " << *k << endl;
+		cout << "inputscalarmult: " << inputscalarmult << endl;
 		cout << "output1: " << output1 << endl;
-		cout << "output2: " << output2 << endl;
 		cout << "outputscalarmult: " << outputscalarmult << endl;
 
 		//verificamos ahora que F(ka) = kF(a), más allá de un error de truncamiento/representación acotado.
@@ -275,12 +301,17 @@ public:
 			*d = (*k * output1[i]) - outputscalarmult[i];
 			assert (d->abs() < EPS);
 		}
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestFTOfSingleton(string method="fft")
 	{
 		//la transformada de un vector de un solo índice (v.g. "(5)") tiene que ser el mismo número.
+		cout << endl << endl << endl << "TestFTOfSingleton(" << method << ");" << endl << endl;
+
+
 		vector<complex> input1 = vector<complex>();
 		vector<complex> output1 = vector<complex>();
 		complex* a = new complex();
@@ -295,11 +326,15 @@ public:
 		complex* d = new complex();
 		*d = input1[0] - output1[0];
 		assert (d->abs() < EPS);
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestFastEqualsDiscrete(string method="fft", int n=4)
 	{
+		cout << endl << endl << endl << "TestFastEqualsDiscrete(" << method << ", " << n << ");" << endl << endl;
+
 		string methodfast;
 		string methoddiscrete;
 		if (method=="fft")
@@ -349,6 +384,8 @@ public:
 			*d = (outputfast[i]) - outputdiscrete[i];
 			//assert (d->abs() < EPS);
 		}
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
@@ -358,6 +395,9 @@ public:
 	{
 		//testeamos -tanto para la transformada como para la antitransformada, tanto en version discreta como rápida- que valgan
 		//las siguientes identidades funcionales: F(F-1(a))=F-1(F(a))=a
+
+		cout << endl << endl << endl << "TestFTofIFT(" << method << ", " << n << ");" << endl << endl;
+
 		string func;
 		string inversefunc;
 		if (method=="fft")
@@ -407,11 +447,16 @@ public:
 			cout << *d << " ";
 			assert (d->abs() < EPS);
 		}
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
 	bool TestParseval(string method="fft", int n=4)
 	{
+		cout << endl << endl << endl << "TestParseval(" << method << ", " << n << ");" << endl << endl;
+
+
 		//si es a tal que ||a||2=L, luego vale: ||F(a)||2=nL (igualdad de Parseval), donde n es la longitud de a
 		//esto es, la transformada de Fourier preserva la norma2.
 		double multiplier=n;
@@ -462,6 +507,8 @@ public:
 		cout << "output norm/" << multiplier << ": " << outputnorm/multiplier << endl;
 
 		assert( abs(inputnorm - outputnorm/multiplier) < EPS );
+
+		cout << "(OK)" << endl;
 		return true;
 	}
 
@@ -524,7 +571,7 @@ int main(int argc, char** argv)
 
 	UnitTests* tests = new UnitTests();
 	tests->TestFTOfZeroesIsZero();
-	//tests->TestFTOfZeroesIsZeroForAllTransforms();
+	tests->TestFTOfZeroesIsZeroForAllTransforms();
 	tests->TestFTOf11("fft");
 	tests->TestFTOf11("dft");
 	tests->TestFTOfii("fft");
