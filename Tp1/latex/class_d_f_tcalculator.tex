@@ -1,0 +1,72 @@
+\hypertarget{class_d_f_tcalculator}{\section{D\-F\-Tcalculator Class Reference}
+\label{class_d_f_tcalculator}\index{D\-F\-Tcalculator@{D\-F\-Tcalculator}}
+}
+
+
+{\ttfamily \#include $<$D\-F\-Tcalculator.\-h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_d_f_tcalculator_a2361911a48bcb73d98e00221ccc40181}{calculate\-D\-F\-T} (const \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&data, \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&result)
+\item 
+static void \hyperlink{class_d_f_tcalculator_a96b2d7d430d87789ced5f02ed2368ed5}{calculatei\-D\-F\-T} (const \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&data, \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&result)
+\item 
+static void \hyperlink{class_d_f_tcalculator_a3270facd7e07b46847705844eb49f01c}{calculate\-F\-F\-T} (\hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&data, \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&result)
+\item 
+static void \hyperlink{class_d_f_tcalculator_ac64908a0b491db9cb19d6f84e9590fea}{calculatei\-F\-F\-T} (\hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&data, \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&result)
+\item 
+static void \hyperlink{class_d_f_tcalculator_a00b116e7dfbb17f17bc8494f497ea12f}{calculate\-F\-T} (\hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&data, \hyperlink{classvector}{vector}$<$ \hyperlink{classcomplex}{complex} $>$ \&result, string method=\char`\"{}fft\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Clase \hyperlink{class_d_f_tcalculator}{D\-F\-Tcalculator}. Esta clase contiene una serie de metodos que permiten calcular la transformada discreta de fourier y la transformada inversa de fourier. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_d_f_tcalculator_a2361911a48bcb73d98e00221ccc40181}{\index{D\-F\-Tcalculator@{D\-F\-Tcalculator}!calculate\-D\-F\-T@{calculate\-D\-F\-T}}
+\index{calculate\-D\-F\-T@{calculate\-D\-F\-T}!DFTcalculator@{D\-F\-Tcalculator}}
+\subsubsection[{calculate\-D\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf D\-F\-Tcalculator\-::calculate\-D\-F\-T} (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ {\bf complex} $>$ \&}]{data, }
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}\label{class_d_f_tcalculator_a2361911a48bcb73d98e00221ccc40181}
+Método el cual permite calcular la transformada discreta de fourier. Recibe por parámetro dos vectores uno con la información y otro donde escribirá el resultado. \hypertarget{class_d_f_tcalculator_a3270facd7e07b46847705844eb49f01c}{\index{D\-F\-Tcalculator@{D\-F\-Tcalculator}!calculate\-F\-F\-T@{calculate\-F\-F\-T}}
+\index{calculate\-F\-F\-T@{calculate\-F\-F\-T}!DFTcalculator@{D\-F\-Tcalculator}}
+\subsubsection[{calculate\-F\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf D\-F\-Tcalculator\-::calculate\-F\-F\-T} (
+\begin{DoxyParamCaption}
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{data, }
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}\label{class_d_f_tcalculator_a3270facd7e07b46847705844eb49f01c}
+Este método permite calcular la transformada de fourier utilizando el algoritmo de la fft \hypertarget{class_d_f_tcalculator_a00b116e7dfbb17f17bc8494f497ea12f}{\index{D\-F\-Tcalculator@{D\-F\-Tcalculator}!calculate\-F\-T@{calculate\-F\-T}}
+\index{calculate\-F\-T@{calculate\-F\-T}!DFTcalculator@{D\-F\-Tcalculator}}
+\subsubsection[{calculate\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf D\-F\-Tcalculator\-::calculate\-F\-T} (
+\begin{DoxyParamCaption}
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{data, }
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{result, }
+\item[{string}]{method = {\ttfamily \char`\"{}fft\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}\label{class_d_f_tcalculator_a00b116e7dfbb17f17bc8494f497ea12f}
+\hypertarget{class_d_f_tcalculator_a96b2d7d430d87789ced5f02ed2368ed5}{\index{D\-F\-Tcalculator@{D\-F\-Tcalculator}!calculatei\-D\-F\-T@{calculatei\-D\-F\-T}}
+\index{calculatei\-D\-F\-T@{calculatei\-D\-F\-T}!DFTcalculator@{D\-F\-Tcalculator}}
+\subsubsection[{calculatei\-D\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf D\-F\-Tcalculator\-::calculatei\-D\-F\-T} (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ {\bf complex} $>$ \&}]{data, }
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}\label{class_d_f_tcalculator_a96b2d7d430d87789ced5f02ed2368ed5}
+Método el cual permite calcular la anti-\/transformada discreta de fourier. Recibe dos parámetros uno con la información y otro donde la escribirá. \hypertarget{class_d_f_tcalculator_ac64908a0b491db9cb19d6f84e9590fea}{\index{D\-F\-Tcalculator@{D\-F\-Tcalculator}!calculatei\-F\-F\-T@{calculatei\-F\-F\-T}}
+\index{calculatei\-F\-F\-T@{calculatei\-F\-F\-T}!DFTcalculator@{D\-F\-Tcalculator}}
+\subsubsection[{calculatei\-F\-F\-T}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf D\-F\-Tcalculator\-::calculatei\-F\-F\-T} (
+\begin{DoxyParamCaption}
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{data, }
+\item[{{\bf vector}$<$ {\bf complex} $>$ \&}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}\label{class_d_f_tcalculator_ac64908a0b491db9cb19d6f84e9590fea}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_d_f_tcalculator_8h}{D\-F\-Tcalculator.\-h}\end{DoxyCompactItemize}

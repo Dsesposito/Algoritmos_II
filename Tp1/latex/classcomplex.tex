@@ -1,0 +1,245 @@
+\hypertarget{classcomplex}{\section{complex Class Reference}
+\label{classcomplex}\index{complex@{complex}}
+}
+
+
+{\ttfamily \#include $<$complex.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcomplex_a1fb8d3affbc54c1ad34a0820b357e194}{complex} ()
+\item 
+\hyperlink{classcomplex_a6ef3c27031b6d4ea7caf7c3d4dec7b17}{complex} (double)
+\item 
+\hyperlink{classcomplex_a745980f132ce9c232264f0aacfefb712}{complex} (double, double)
+\item 
+\hyperlink{classcomplex_afe655d9d3cfa7cd512e462b7947048b8}{complex} (const \hyperlink{classcomplex}{complex} \&)
+\item 
+\hyperlink{classcomplex}{complex} const \& \hyperlink{classcomplex_a290af8bbc9bf6dafc074211b4c91443c}{operator=} (\hyperlink{classcomplex}{complex} const \&)
+\item 
+\hyperlink{classcomplex_abd31d1c53fe873fa4ec0fbce50601485}{$\sim$complex} ()
+\item 
+double \hyperlink{classcomplex_ab789fab6f3d5ee4834938f295a493361}{re} () const 
+\item 
+double \hyperlink{classcomplex_a0bb3f5cbddabbbebdbbc737a1acd270e}{im} () const 
+\item 
+double \hyperlink{classcomplex_a124ea7e661d1bea8bd287bdd4ad73a8c}{abs} () const 
+\item 
+\hyperlink{classcomplex}{complex} \hyperlink{classcomplex_a393431e0e0610239fa2a5b22d708736a}{set\-Random} (double from, double to)
+\item 
+double \hyperlink{classcomplex_a6f8ffb4c33f81092a195af7f47314865}{dist} (\hyperlink{classcomplex}{complex} const, \hyperlink{classcomplex}{complex})
+\item 
+double \hyperlink{classcomplex_a540643f5a4a93afb6aea29b209eb3213}{phase} () const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classcomplex}{complex} \hyperlink{classcomplex_a73543a2c6392ba0a6f287a8766d257bf}{from\-Polar\-To\-Rectangular} (double, double)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{classcomplex_a51e6fff8af1d57796c33097a10c7b649}{operator+} (\hyperlink{classcomplex}{complex} const \&, \hyperlink{classcomplex}{complex} const \&)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{classcomplex_ae2cd6ca63180f793fa08d6c73d3573ac}{operator-\/} (\hyperlink{classcomplex}{complex} const \&, \hyperlink{classcomplex}{complex} const \&)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{classcomplex_aae9b43eee24b4245355b38d3996f7179}{operator$\ast$} (\hyperlink{classcomplex}{complex} const \&, \hyperlink{classcomplex}{complex} const \&)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{classcomplex_a805777316029c2aafa319d5b02dbca99}{operator/} (\hyperlink{classcomplex}{complex} const \&, double)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{classcomplex_a0c259db70c17e1b38ca2b2fc48ad3bba}{operator$^\wedge$} (\hyperlink{classcomplex}{complex} const \&, int)
+\item 
+bool \hyperlink{classcomplex_ae168b98543708346ed78b85b14c88d4e}{operator==} (\hyperlink{classcomplex}{complex} const \&, double)
+\item 
+bool \hyperlink{classcomplex_ad6298ff590939eed6f471575b0ee279e}{operator==} (\hyperlink{classcomplex}{complex} const \&, \hyperlink{classcomplex}{complex} const \&)
+\item 
+std\-::ostream \& \hyperlink{classcomplex_a92366b815f4b8a37d390851336c6ccbc}{operator$<$$<$} (std\-::ostream \&, const \hyperlink{classcomplex}{complex} \&)
+\item 
+std\-::istream \& \hyperlink{classcomplex_abc560c7de7f30da959209b234c07ee26}{operator$>$$>$} (std\-::istream \&, \hyperlink{classcomplex}{complex} \&)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Clase representativa de un número complejo. Posee algunas de las operaciones más comunes que se pueden llegar a necesitar para operar con numeros complejos. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classcomplex_a1fb8d3affbc54c1ad34a0820b357e194}{\index{complex@{complex}!complex@{complex}}
+\index{complex@{complex}!complex@{complex}}
+\subsubsection[{complex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex\-::complex} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_a1fb8d3affbc54c1ad34a0820b357e194}
+Constructor sin parámetros. Este constructor permite inicializar un complejo en (0,0). \hypertarget{classcomplex_a6ef3c27031b6d4ea7caf7c3d4dec7b17}{\index{complex@{complex}!complex@{complex}}
+\index{complex@{complex}!complex@{complex}}
+\subsubsection[{complex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex\-::complex} (
+\begin{DoxyParamCaption}
+\item[{double}]{r}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_a6ef3c27031b6d4ea7caf7c3d4dec7b17}
+Constructor. Este constructor permite crear un complejo a partir de un número real. La parte imaginaria queda inicializada en cero. \hypertarget{classcomplex_a745980f132ce9c232264f0aacfefb712}{\index{complex@{complex}!complex@{complex}}
+\index{complex@{complex}!complex@{complex}}
+\subsubsection[{complex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex\-::complex} (
+\begin{DoxyParamCaption}
+\item[{double}]{r, }
+\item[{double}]{i}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_a745980f132ce9c232264f0aacfefb712}
+Constructor. Este constructor permite crear un complejo a partir de dos números reales. El primero corresponde a la parte real y el segundo a la parte imaginaria. \hypertarget{classcomplex_afe655d9d3cfa7cd512e462b7947048b8}{\index{complex@{complex}!complex@{complex}}
+\index{complex@{complex}!complex@{complex}}
+\subsubsection[{complex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex\-::complex} (
+\begin{DoxyParamCaption}
+\item[{const {\bf complex} \&}]{c}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_afe655d9d3cfa7cd512e462b7947048b8}
+Constructor por copia. Construye un complejo a partir de la copiar de otro. \hypertarget{classcomplex_abd31d1c53fe873fa4ec0fbce50601485}{\index{complex@{complex}!$\sim$complex@{$\sim$complex}}
+\index{$\sim$complex@{$\sim$complex}!complex@{complex}}
+\subsubsection[{$\sim$complex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex\-::$\sim$complex} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_abd31d1c53fe873fa4ec0fbce50601485}
+Destructor. Destructor para un numero complejo. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classcomplex_a124ea7e661d1bea8bd287bdd4ad73a8c}{\index{complex@{complex}!abs@{abs}}
+\index{abs@{abs}!complex@{complex}}
+\subsubsection[{abs}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf complex\-::abs} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classcomplex_a124ea7e661d1bea8bd287bdd4ad73a8c}
+Módulo de un número complejo. Este método devuelve el modulo de un complejo. \hypertarget{classcomplex_a6f8ffb4c33f81092a195af7f47314865}{\index{complex@{complex}!dist@{dist}}
+\index{dist@{dist}!complex@{complex}}
+\subsubsection[{dist}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf complex\-::dist} (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const}]{x, }
+\item[{{\bf complex}}]{y}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_a6f8ffb4c33f81092a195af7f47314865}
+Distancia de un complejo a otro. \hypertarget{classcomplex_a73543a2c6392ba0a6f287a8766d257bf}{\index{complex@{complex}!from\-Polar\-To\-Rectangular@{from\-Polar\-To\-Rectangular}}
+\index{from\-Polar\-To\-Rectangular@{from\-Polar\-To\-Rectangular}!complex@{complex}}
+\subsubsection[{from\-Polar\-To\-Rectangular}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} {\bf complex\-::from\-Polar\-To\-Rectangular} (
+\begin{DoxyParamCaption}
+\item[{double}]{mod, }
+\item[{double}]{phase}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classcomplex_a73543a2c6392ba0a6f287a8766d257bf}
+Conversor de complejo de forma polar a forma cartesiana. Este método recibe por parámetro el modulo y la fase de un complejo y retorna un número complejo en su forma cartesiana. \hypertarget{classcomplex_a0bb3f5cbddabbbebdbbc737a1acd270e}{\index{complex@{complex}!im@{im}}
+\index{im@{im}!complex@{complex}}
+\subsubsection[{im}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf complex\-::im} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classcomplex_a0bb3f5cbddabbbebdbbc737a1acd270e}
+Parte imaginaria de un complejo. Este método devuelve la parte imaginaria de un número complejo. \hypertarget{classcomplex_a290af8bbc9bf6dafc074211b4c91443c}{\index{complex@{complex}!operator=@{operator=}}
+\index{operator=@{operator=}!complex@{complex}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const \& complex\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_a290af8bbc9bf6dafc074211b4c91443c}
+Sobrecarga operador asignación. Asigna parte real a parte real y parte imaginaría a parte imaginaría. \hypertarget{classcomplex_a540643f5a4a93afb6aea29b209eb3213}{\index{complex@{complex}!phase@{phase}}
+\index{phase@{phase}!complex@{complex}}
+\subsubsection[{phase}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf complex\-::phase} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classcomplex_a540643f5a4a93afb6aea29b209eb3213}
+Fase de un número complejo. Este método devuelve la fase de un número complejo. \hypertarget{classcomplex_ab789fab6f3d5ee4834938f295a493361}{\index{complex@{complex}!re@{re}}
+\index{re@{re}!complex@{complex}}
+\subsubsection[{re}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf complex\-::re} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classcomplex_ab789fab6f3d5ee4834938f295a493361}
+Parte real de un complejo. Este método devuelve la parte real de un número complejo \hypertarget{classcomplex_a393431e0e0610239fa2a5b22d708736a}{\index{complex@{complex}!set\-Random@{set\-Random}}
+\index{set\-Random@{set\-Random}!complex@{complex}}
+\subsubsection[{set\-Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} {\bf complex\-::set\-Random} (
+\begin{DoxyParamCaption}
+\item[{double}]{from, }
+\item[{double}]{to}
+\end{DoxyParamCaption}
+)}}\label{classcomplex_a393431e0e0610239fa2a5b22d708736a}
+Setea al complejo como un numero al azar con\-: Re perteneciente al intervalo \mbox{[}from;to\mbox{]} Im perteneciente al intervalo \mbox{[}from;to\mbox{]} 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classcomplex_aae9b43eee24b4245355b38d3996f7179}{\index{complex@{complex}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!complex@{complex}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_aae9b43eee24b4245355b38d3996f7179}
+Sobrecarga operador multiplicación. Este método multiplica dos números complejos. \hypertarget{classcomplex_a51e6fff8af1d57796c33097a10c7b649}{\index{complex@{complex}!operator+@{operator+}}
+\index{operator+@{operator+}!complex@{complex}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator+ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_a51e6fff8af1d57796c33097a10c7b649}
+Sobrecarga operador suma. Este método suma dos números complejos. \hypertarget{classcomplex_ae2cd6ca63180f793fa08d6c73d3573ac}{\index{complex@{complex}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!complex@{complex}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator-\/ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_ae2cd6ca63180f793fa08d6c73d3573ac}
+Sobrecarga operador resta. Este método resta dos números complejos. \hypertarget{classcomplex_a805777316029c2aafa319d5b02dbca99}{\index{complex@{complex}!operator/@{operator/}}
+\index{operator/@{operator/}!complex@{complex}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator/ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c, }
+\item[{double}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_a805777316029c2aafa319d5b02dbca99}
+Sobrecarga operador división. Este método divide un complejo con un número real. \hypertarget{classcomplex_a92366b815f4b8a37d390851336c6ccbc}{\index{complex@{complex}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!complex@{complex}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{, }
+\item[{const {\bf complex} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_a92366b815f4b8a37d390851336c6ccbc}
+Sobrecarga operador escritura. Este operador escribe un complejo en formato (Re,Img) al flujo de salida. \hypertarget{classcomplex_ae168b98543708346ed78b85b14c88d4e}{\index{complex@{complex}!operator==@{operator==}}
+\index{operator==@{operator==}!complex@{complex}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c, }
+\item[{double}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_ae168b98543708346ed78b85b14c88d4e}
+Sobrecarga operador igual. Este método compara la parte real de un un complejo con un numero real. Además verifica que la parte imaginaria del complejo sea cero. \hypertarget{classcomplex_ad6298ff590939eed6f471575b0ee279e}{\index{complex@{complex}!operator==@{operator==}}
+\index{operator==@{operator==}!complex@{complex}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_ad6298ff590939eed6f471575b0ee279e}
+Sobrecarga operador igual. Este método compara dos números complejos. Parte real con parte real y parte imaginaria con parte imaginaria. \hypertarget{classcomplex_abc560c7de7f30da959209b234c07ee26}{\index{complex@{complex}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!complex@{complex}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\-::istream \&}]{, }
+\item[{{\bf complex} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_abc560c7de7f30da959209b234c07ee26}
+Sobrecarga operador lectura. Este operador lee del flujo de entrada un número complejo. Acepta números reales individuales a los cuales se los toma como la parte real del numero complejo que retorna. En el caso de que reciba al numero complejo como par ordenado devuelve un complejo con la parte real y la parte imaginaria obtenida del flujo de entrada. \hypertarget{classcomplex_a0c259db70c17e1b38ca2b2fc48ad3bba}{\index{complex@{complex}!operator$^\wedge$@{operator$^\wedge$}}
+\index{operator$^\wedge$@{operator$^\wedge$}!complex@{complex}}
+\subsubsection[{operator$^\wedge$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator$^\wedge$ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c, }
+\item[{int}]{power}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classcomplex_a0c259db70c17e1b38ca2b2fc48ad3bba}
+Sobrecarga operador potenciación. Este método potencia un número complejo con un numero entero. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{complex_8h}{complex.\-h}\item 
+\hyperlink{complex_8cc}{complex.\-cc}\end{DoxyCompactItemize}

@@ -1,0 +1,170 @@
+\hypertarget{classvector}{\section{vector$<$ T $>$ Class Template Reference}
+\label{classvector}\index{vector$<$ T $>$@{vector$<$ T $>$}}
+}
+
+
+{\ttfamily \#include $<$vector.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classvector_a00d237f22fd5eb1aa9a536993e82e54f}{vector} ()
+\item 
+\hyperlink{classvector_ae47a954b372e645e4e0c7b973f7c33b2}{vector} (int size\-\_\-)
+\item 
+\hyperlink{classvector_a55a9bd885df4e719eddded0f8c018b28}{vector} (const \hyperlink{classvector}{vector}$<$ T $>$ \&cv)
+\item 
+\hyperlink{classvector_a7bc236f547bb5debe890fa8ebaabe965}{$\sim$vector} ()
+\item 
+int \hyperlink{classvector_a77f8876b58fdb369a0a9576dc2215031}{length} () const 
+\item 
+void \hyperlink{classvector_ae7f0ac8afa4d67de3a841c66320df01b}{push\-Back} (T \&elem)
+\item 
+T \& \hyperlink{classvector_a7330b653a0bfc5abed10d87b924917b9}{pop\-Back} ()
+\item 
+T \& \hyperlink{classvector_abea62f5cb562223e8ce71042467a7f36}{get\-Circular} (int index)
+\item 
+\hyperlink{classvector}{vector}$<$ T $>$ \& \hyperlink{classvector_a5011f7a433f354e3710f96134cc7f56c}{operator=} (const \hyperlink{classvector}{vector}$<$ T $>$ \&rigth)
+\item 
+bool \hyperlink{classvector_abf88bed106f292d3fb591f14650fd561}{operator==} (const \hyperlink{classvector}{vector}$<$ T $>$ \&rigth) const 
+\item 
+const T \& \hyperlink{classvector_aa6ee18d204051b0dc6acdd043efbee78}{operator\mbox{[}$\,$\mbox{]}} (int index) const 
+\item 
+T \& \hyperlink{classvector_afd7cc79111970bb2efe406b7040bc63a}{operator\mbox{[}$\,$\mbox{]}} (int index)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classvector}{vector}$<$ T $>$ \& \hyperlink{classvector_a081ad6fb04eed6e06c7bb00de79abb1b}{operator/} (\hyperlink{classvector}{vector}$<$ T $>$ \&\hyperlink{classvector}{vector}, double divider)
+\item 
+std\-::istream \& \hyperlink{classvector_a0a88edbf6d2d54cb1687d637c77b9769}{operator$>$$>$} (std\-::istream \&is, \hyperlink{classvector}{vector}$<$ T $>$ \&\hyperlink{classvector}{vector})
+\item 
+std\-::ostream \& \hyperlink{classvector_a09118ab52363911a521f38dc53e8ecc3}{operator$<$$<$} (std\-::ostream \&os, const \hyperlink{classvector}{vector}$<$ T $>$ \&\hyperlink{classvector}{vector})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$class vector$<$ T $>$}
+
+Clase vector. Permite almacenar un arreglo de datos. Contiene una serie de de métodos que permiten agregar, quitar y leer los distintos elementos almacenados en el vector. Además la clase esta templetizada, permitiendo así crear vectores de cualquier tipo. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classvector_a00d237f22fd5eb1aa9a536993e82e54f}{\index{vector@{vector}!vector@{vector}}
+\index{vector@{vector}!vector@{vector}}
+\subsubsection[{vector}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf vector}$<$ T $>$\-::{\bf vector} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_a00d237f22fd5eb1aa9a536993e82e54f}
+Constructor sin parámetros. Inicializa un vector en cero. Además no crea la memoria para el vector. \hypertarget{classvector_ae47a954b372e645e4e0c7b973f7c33b2}{\index{vector@{vector}!vector@{vector}}
+\index{vector@{vector}!vector@{vector}}
+\subsubsection[{vector}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf vector}$<$ T $>$\-::{\bf vector} (
+\begin{DoxyParamCaption}
+\item[{int}]{size\-\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_ae47a954b372e645e4e0c7b973f7c33b2}
+Constructor. Inicializa un vector vacío. A diferencia del constructor sin parámetros, este crea la memoria para el vector de acuerdo al parámetro size\-\_\-. \hypertarget{classvector_a55a9bd885df4e719eddded0f8c018b28}{\index{vector@{vector}!vector@{vector}}
+\index{vector@{vector}!vector@{vector}}
+\subsubsection[{vector}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf vector}$<$ T $>$\-::{\bf vector} (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ T $>$ \&}]{cv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_a55a9bd885df4e719eddded0f8c018b28}
+Constructor copia. Inicializa un vector a partir de otro pasado por parámetro. \hypertarget{classvector_a7bc236f547bb5debe890fa8ebaabe965}{\index{vector@{vector}!$\sim$vector@{$\sim$vector}}
+\index{$\sim$vector@{$\sim$vector}!vector@{vector}}
+\subsubsection[{$\sim$vector}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf vector}$<$ T $>$\-::$\sim${\bf vector} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_a7bc236f547bb5debe890fa8ebaabe965}
+Destructor de vector. borra la memoria creada para el vector. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classvector_abea62f5cb562223e8ce71042467a7f36}{\index{vector@{vector}!get\-Circular@{get\-Circular}}
+\index{get\-Circular@{get\-Circular}!vector@{vector}}
+\subsubsection[{get\-Circular}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ T\& {\bf vector}$<$ T $>$\-::{\bf get\-Circular} (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_abea62f5cb562223e8ce71042467a7f36}
+\hypertarget{classvector_a77f8876b58fdb369a0a9576dc2215031}{\index{vector@{vector}!length@{length}}
+\index{length@{length}!vector@{vector}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ int {\bf vector}$<$ T $>$\-::{\bf length} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_a77f8876b58fdb369a0a9576dc2215031}
+Largo del vector. Este método devuelve el largo del vector. \hypertarget{classvector_a5011f7a433f354e3710f96134cc7f56c}{\index{vector@{vector}!operator=@{operator=}}
+\index{operator=@{operator=}!vector@{vector}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf vector}$<$T$>$\& {\bf vector}$<$ T $>$\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ T $>$ \&}]{rigth}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_a5011f7a433f354e3710f96134cc7f56c}
+Operador asignación. Este operador copia los elementos del vector pasado por parámetro al objeto sobre el cual se ejecuto. \hypertarget{classvector_abf88bed106f292d3fb591f14650fd561}{\index{vector@{vector}!operator==@{operator==}}
+\index{operator==@{operator==}!vector@{vector}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool {\bf vector}$<$ T $>$\-::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ T $>$ \&}]{rigth}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_abf88bed106f292d3fb591f14650fd561}
+Operador comparación. Compara el contenido del vector pasado por parámetro con el vector sobre el cual se ejecuto el operador. En el caso que todos los elementos coincidan devuelve true. \hypertarget{classvector_aa6ee18d204051b0dc6acdd043efbee78}{\index{vector@{vector}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!vector@{vector}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ const T\& {\bf vector}$<$ T $>$\-::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_aa6ee18d204051b0dc6acdd043efbee78}
+Operador indexación constante. Permite obtener el objeto almacenado en una determinada posición del vector. \hypertarget{classvector_afd7cc79111970bb2efe406b7040bc63a}{\index{vector@{vector}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!vector@{vector}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ T\& {\bf vector}$<$ T $>$\-::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_afd7cc79111970bb2efe406b7040bc63a}
+Operador indexación. Permite asignarle un valor a una determinada posición del vector. \hypertarget{classvector_a7330b653a0bfc5abed10d87b924917b9}{\index{vector@{vector}!pop\-Back@{pop\-Back}}
+\index{pop\-Back@{pop\-Back}!vector@{vector}}
+\subsubsection[{pop\-Back}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ T\& {\bf vector}$<$ T $>$\-::{\bf pop\-Back} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_a7330b653a0bfc5abed10d87b924917b9}
+\hypertarget{classvector_ae7f0ac8afa4d67de3a841c66320df01b}{\index{vector@{vector}!push\-Back@{push\-Back}}
+\index{push\-Back@{push\-Back}!vector@{vector}}
+\subsubsection[{push\-Back}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ void {\bf vector}$<$ T $>$\-::{\bf push\-Back} (
+\begin{DoxyParamCaption}
+\item[{T \&}]{elem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{classvector_ae7f0ac8afa4d67de3a841c66320df01b}
+Inserta un elemento al vector. Este método inserta al final del vector un elemento. Para agregar el elemento primero verifica que tenga memoria, en caso de no tener crea memoria con capacidad igual al doble de la que tenía. 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classvector_a081ad6fb04eed6e06c7bb00de79abb1b}{\index{vector@{vector}!operator/@{operator/}}
+\index{operator/@{operator/}!vector@{vector}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf vector}$<$T$>$\& operator/ (
+\begin{DoxyParamCaption}
+\item[{{\bf vector}$<$ T $>$ \&}]{vector, }
+\item[{double}]{divider}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classvector_a081ad6fb04eed6e06c7bb00de79abb1b}
+\hypertarget{classvector_a09118ab52363911a521f38dc53e8ecc3}{\index{vector@{vector}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!vector@{vector}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ std\-::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{os, }
+\item[{const {\bf vector}$<$ T $>$ \&}]{vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classvector_a09118ab52363911a521f38dc53e8ecc3}
+Operador escritura. Permite escribir en un stream de salida el vector del cual se llamo. \hypertarget{classvector_a0a88edbf6d2d54cb1687d637c77b9769}{\index{vector@{vector}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!vector@{vector}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ std\-::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\-::istream \&}]{is, }
+\item[{{\bf vector}$<$ T $>$ \&}]{vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}\label{classvector_a0a88edbf6d2d54cb1687d637c77b9769}
+Operador lectura. Permite leer de un stream de entrada un conjunto de objetos del tipo T, almacenándolos en un vector. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{vector_8h}{vector.\-h}\end{DoxyCompactItemize}

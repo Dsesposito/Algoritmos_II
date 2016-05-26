@@ -218,6 +218,13 @@ public:
 		DFTcalculator::calculateFT(input2, output2, method); 
 		DFTcalculator::calculateFT(inputsum, outputsum, method); 
 
+		cout << "input1: " << input1 << endl;
+		cout << "input2: " << input2 << endl;
+		cout << "inputsum: " << inputsum << endl;
+		cout << "output1: " << output1 << endl;
+		cout << "output2: " << output2 << endl;
+		cout << "outputsum: " << outputsum << endl;
+
 		//verificamos ahora que F(a+b) = F(a) + F(b), más allá de un error de truncamiento/representación acotado.
 		for (int i=0; i<n; i++)
 		{
@@ -254,6 +261,13 @@ public:
 		DFTcalculator::calculateFT(input1, output1, method); 
 		DFTcalculator::calculateFT(inputscalarmult, outputscalarmult, method); 
 
+		cout << "input1: " << input1 << endl;
+		cout << "input2: " << input2 << endl;
+		cout << "inputsclaramult: " << inputscalarmult << endl;
+		cout << "output1: " << output1 << endl;
+		cout << "output2: " << output2 << endl;
+		cout << "outputscalarmult: " << outputscalarmult << endl;
+
 		//verificamos ahora que F(ka) = kF(a), más allá de un error de truncamiento/representación acotado.
 		for (int i=0; i<n; i++)
 		{
@@ -273,6 +287,10 @@ public:
 		a->setRandom(1,10);
 		input1.pushBack(*a);
 		DFTcalculator::calculateFT(input1, output1, method); 
+
+		cout << "input1: " << input1 << endl;
+		cout << "output1: " << output1 << endl;
+
 		//verificamos ahora que a = F(a), más allá de un error de truncamiento/representación acotado.
 		complex* d = new complex();
 		*d = input1[0] - output1[0];
@@ -377,6 +395,11 @@ public:
 		}
 		DFTcalculator::calculateFT(a, b, func);
 		DFTcalculator::calculateFT(b, c, inversefunc);
+
+		cout << "a: " << a << endl;
+		cout << "b = F(a): " << b << endl;
+		cout << "c = F-1(F(a)): " << c << endl;
+
 		for (int i=0; i<n; i++)
 		{
 			complex* d = new complex();
@@ -385,11 +408,6 @@ public:
 			assert (d->abs() < EPS);
 		}
 		return true;
-	}
-
-	bool TestBessel(string method="fft")
-	{
-
 	}
 
 	bool TestParseval(string method="fft", int n=4)

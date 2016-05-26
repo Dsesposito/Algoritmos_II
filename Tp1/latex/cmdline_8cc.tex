@@ -1,0 +1,39 @@
+\hypertarget{cmdline_8cc}{\section{cmdline.\-cc File Reference}
+\label{cmdline_8cc}\index{cmdline.\-cc@{cmdline.\-cc}}
+}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}cmdline.\-h\char`\"{}}\\*
+Include dependency graph for cmdline.\-cc\-:
+This graph shows which files directly or indirectly include this file\-:
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cmdline_8cc_ad70d31ccb183561dccaa233d530a8140}{E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S}(p)
+\item 
+\#define \hyperlink{cmdline_8cc_a5b25e418bf6700bc7d5f94a09df98aad}{O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E}(op)~(op-\/$>$short\-\_\-name ? op-\/$>$short\-\_\-name \-: op-\/$>$long\-\_\-name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{cmdline_8cc_ad70d31ccb183561dccaa233d530a8140}{\index{cmdline.\-cc@{cmdline.\-cc}!E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S@{E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S}}
+\index{E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S@{E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S}!cmdline.cc@{cmdline.\-cc}}
+\subsubsection[{E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf E\-N\-D\-\_\-\-O\-F\-\_\-\-O\-P\-T\-I\-O\-N\-S}(
+\begin{DoxyParamCaption}
+\item[{}]{p}
+\end{DoxyParamCaption}
+)}}\label{cmdline_8cc_ad70d31ccb183561dccaa233d530a8140}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+((p)->short_name == 0   \
+         && (p)->long_name == 0 \
+         && (p)->parse == 0)
+\end{DoxyCode}
+\hypertarget{cmdline_8cc_a5b25e418bf6700bc7d5f94a09df98aad}{\index{cmdline.\-cc@{cmdline.\-cc}!O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E@{O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E}}
+\index{O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E@{O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E}!cmdline.cc@{cmdline.\-cc}}
+\subsubsection[{O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf O\-P\-T\-I\-O\-N\-\_\-\-N\-A\-M\-E}(
+\begin{DoxyParamCaption}
+\item[{}]{op}
+\end{DoxyParamCaption}
+)~(op-\/$>$short\-\_\-name ? op-\/$>$short\-\_\-name \-: op-\/$>$long\-\_\-name)}}\label{cmdline_8cc_a5b25e418bf6700bc7d5f94a09df98aad}

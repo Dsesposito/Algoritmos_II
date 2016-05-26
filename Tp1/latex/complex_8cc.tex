@@ -1,0 +1,116 @@
+\hypertarget{complex_8cc}{\section{complex.\-cc File Reference}
+\label{complex_8cc}\index{complex.\-cc@{complex.\-cc}}
+}
+{\ttfamily \#include \char`\"{}complex.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+Include dependency graph for complex.\-cc\-:
+This graph shows which files directly or indirectly include this file\-:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{complex_8cc_ab5f839a6c2bd2aabbb213ea3eebe20db}{f\-Rand} (double f\-Min, double f\-Max)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{complex_8cc_addc265dc368a3d3a769630adb964d0d0}{operator+} (\hyperlink{classcomplex}{complex} const \&x, \hyperlink{classcomplex}{complex} const \&y)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{complex_8cc_aba1c08c1a60b086c737075a5e2af9ce2}{operator-\/} (\hyperlink{classcomplex}{complex} const \&x, \hyperlink{classcomplex}{complex} const \&y)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{complex_8cc_aa40107e95ed5066aa78c5ba5c3beaade}{operator$\ast$} (\hyperlink{classcomplex}{complex} const \&x, \hyperlink{classcomplex}{complex} const \&y)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{complex_8cc_ae1a2cac9c43880331fbed69a83345974}{operator/} (\hyperlink{classcomplex}{complex} const \&c, double f)
+\item 
+\hyperlink{classcomplex}{complex} const \hyperlink{complex_8cc_a01f999ba2921038551ea74e82a4e2eca}{operator$^\wedge$} (\hyperlink{classcomplex}{complex} const \&c, int power)
+\item 
+bool \hyperlink{complex_8cc_afa8fdc40348c55c6a29e41d0733097d1}{operator==} (\hyperlink{classcomplex}{complex} const \&c, double f)
+\item 
+bool \hyperlink{complex_8cc_aaf4b96517012444f5aecb197119399ba}{operator==} (\hyperlink{classcomplex}{complex} const \&x, \hyperlink{classcomplex}{complex} const \&y)
+\item 
+ostream \& \hyperlink{complex_8cc_a2b4ff0a259b4999288fa624d390fd97a}{operator$<$$<$} (ostream \&os, const \hyperlink{classcomplex}{complex} \&c)
+\item 
+istream \& \hyperlink{complex_8cc_a9419585ec4a864c3da81aa323da33a25}{operator$>$$>$} (istream \&is, \hyperlink{classcomplex}{complex} \&c)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{complex_8cc_ab5f839a6c2bd2aabbb213ea3eebe20db}{\index{complex.\-cc@{complex.\-cc}!f\-Rand@{f\-Rand}}
+\index{f\-Rand@{f\-Rand}!complex.cc@{complex.\-cc}}
+\subsubsection[{f\-Rand}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf f\-Rand} (
+\begin{DoxyParamCaption}
+\item[{double}]{f\-Min, }
+\item[{double}]{f\-Max}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_ab5f839a6c2bd2aabbb213ea3eebe20db}
+\hypertarget{complex_8cc_aa40107e95ed5066aa78c5ba5c3beaade}{\index{complex.\-cc@{complex.\-cc}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_aa40107e95ed5066aa78c5ba5c3beaade}
+Sobrecarga operador multiplicación. Este método multiplica dos números complejos. \hypertarget{complex_8cc_addc265dc368a3d3a769630adb964d0d0}{\index{complex.\-cc@{complex.\-cc}!operator+@{operator+}}
+\index{operator+@{operator+}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator+ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_addc265dc368a3d3a769630adb964d0d0}
+Sobrecarga operador suma. Este método suma dos números complejos. \hypertarget{complex_8cc_aba1c08c1a60b086c737075a5e2af9ce2}{\index{complex.\-cc@{complex.\-cc}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator-\/ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_aba1c08c1a60b086c737075a5e2af9ce2}
+Sobrecarga operador resta. Este método resta dos números complejos. \hypertarget{complex_8cc_ae1a2cac9c43880331fbed69a83345974}{\index{complex.\-cc@{complex.\-cc}!operator/@{operator/}}
+\index{operator/@{operator/}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator/ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c, }
+\item[{double}]{f}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_ae1a2cac9c43880331fbed69a83345974}
+Sobrecarga operador división. Este método divide un complejo con un número real. \hypertarget{complex_8cc_a2b4ff0a259b4999288fa624d390fd97a}{\index{complex.\-cc@{complex.\-cc}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{os, }
+\item[{const {\bf complex} \&}]{c}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_a2b4ff0a259b4999288fa624d390fd97a}
+\hypertarget{complex_8cc_afa8fdc40348c55c6a29e41d0733097d1}{\index{complex.\-cc@{complex.\-cc}!operator==@{operator==}}
+\index{operator==@{operator==}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c, }
+\item[{double}]{f}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_afa8fdc40348c55c6a29e41d0733097d1}
+Sobrecarga operador igual. Este método compara la parte real de un un complejo con un numero real. Además verifica que la parte imaginaria del complejo sea cero. \hypertarget{complex_8cc_aaf4b96517012444f5aecb197119399ba}{\index{complex.\-cc@{complex.\-cc}!operator==@{operator==}}
+\index{operator==@{operator==}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{x, }
+\item[{{\bf complex} const \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_aaf4b96517012444f5aecb197119399ba}
+Sobrecarga operador igual. Este método compara dos números complejos. Parte real con parte real y parte imaginaria con parte imaginaria. \hypertarget{complex_8cc_a9419585ec4a864c3da81aa323da33a25}{\index{complex.\-cc@{complex.\-cc}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{is, }
+\item[{{\bf complex} \&}]{c}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_a9419585ec4a864c3da81aa323da33a25}
+\hypertarget{complex_8cc_a01f999ba2921038551ea74e82a4e2eca}{\index{complex.\-cc@{complex.\-cc}!operator$^\wedge$@{operator$^\wedge$}}
+\index{operator$^\wedge$@{operator$^\wedge$}!complex.cc@{complex.\-cc}}
+\subsubsection[{operator$^\wedge$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf complex} const operator$^\wedge$ (
+\begin{DoxyParamCaption}
+\item[{{\bf complex} const \&}]{c, }
+\item[{int}]{power}
+\end{DoxyParamCaption}
+)}}\label{complex_8cc_a01f999ba2921038551ea74e82a4e2eca}
+Sobrecarga operador potenciación. Este método potencia un número complejo con un numero entero. 
