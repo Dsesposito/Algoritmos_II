@@ -14,7 +14,7 @@
 #include <sstream>  
 #include <cmath>
 #include "cmdline.h"
-#include "DFTcalculator.h"
+#include "FTcalculator.h"
 #include <ctime>
 
 using namespace std;
@@ -121,19 +121,19 @@ int main(int argc, char** argv) {
         //Dependiendo que ingreso el usuario hago una cosa u otra
         if(method == "dft"){
             //Calculo la DFT
-            DFTcalculator::calculateDFT(data,result); 
+            FTcalculator::calculateDFT(data,result); 
         }
         else if(method == "idft"){
             //Calculo la DFT
-            DFTcalculator::calculateiDFT(data,result); 
+            FTcalculator::calculateiDFT(data,result); 
         }
         else if(method == "fft"){
             //Calculo la FFT
-            DFTcalculator::calculateFFT(data,result); 
+            FTcalculator::calculateFFT(data,result); 
         }
         else if(method == "ifft"){
             //Calculo la iFFT
-            DFTcalculator::calculateiFFT(data,result); 
+            FTcalculator::calculateiFFT(data,result); 
         }
 
         //Imprimo el resultado

@@ -1,5 +1,5 @@
 /* 
- * File:   DFTcalculator.cc
+ * File:   FTcalculator.cc
  * Author: Diego / Marcelo
  *
  * Created on March 21, 2016, 8:09 PM
@@ -20,11 +20,11 @@
 #endif
 
 /**
- * Clase DFTcalculator. Esta clase contiene una serie de metodos que permiten
+ * Clase FTcalculator. Esta clase contiene una serie de metodos que permiten
  * calcular la transformada discreta de fourier y la transformada inversa
  * de fourier.
  */
-class DFTcalculator
+class FTcalculator
 {
     private:
         
@@ -161,7 +161,7 @@ class DFTcalculator
      * de la fft
      */
     static void calculateFFT(vector<complex> & data , vector<complex> & result){
-        DFTcalculator::fillMinPower2(data);
+        FTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
             initIndexes.pushBack(i);
@@ -175,7 +175,7 @@ class DFTcalculator
      * el algoritmo de la fft.
      */    
     static void calculateiFFT(vector<complex> & data , vector<complex> & result){
-        DFTcalculator::fillMinPower2(data);
+        FTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
             initIndexes.pushBack(i);
@@ -188,7 +188,7 @@ class DFTcalculator
      * Otro método posible para los mismos efectos (otra interfaz distinta)
      */
     static void calculateFT(vector<complex> & data , vector<complex> & result, string method="fft"){
-        DFTcalculator::fillMinPower2(data);
+        FTcalculator::fillMinPower2(data);
         vector<int> initIndexes = vector<int>();
         for(int i = 0 ; i < data.length() ; i++){
             initIndexes.pushBack(i);

@@ -7,14 +7,14 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complex.cc"
+#include "complex.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <sstream>  
 #include <cmath>
-#include "cmdline.cc"
-#include "DFTcalculator.h"
+#include "cmdline.h"
+#include "FTcalculator.h"
 #include <ctime>
 #include <assert.h>
 #include <algorithm> 
@@ -239,9 +239,9 @@ public:
 			input2.pushBack(*b);
 			inputsum.pushBack(*sum);
 		}
-		DFTcalculator::calculateFT(input1, output1, method); 
-		DFTcalculator::calculateFT(input2, output2, method); 
-		DFTcalculator::calculateFT(inputsum, outputsum, method); 
+		FTcalculator::calculateFT(input1, output1, method); 
+		FTcalculator::calculateFT(input2, output2, method); 
+		FTcalculator::calculateFT(inputsum, outputsum, method); 
 
 		cout << "input1: " << input1 << endl;
 		cout << "input2: " << input2 << endl;
@@ -285,8 +285,8 @@ public:
 			input1.pushBack(*a);
 			inputscalarmult.pushBack(*mult);
 		}
-		DFTcalculator::calculateFT(input1, output1, method); 
-		DFTcalculator::calculateFT(inputscalarmult, outputscalarmult, method); 
+		FTcalculator::calculateFT(input1, output1, method); 
+		FTcalculator::calculateFT(inputscalarmult, outputscalarmult, method); 
 
 		cout << "input1: " << input1 << endl;
 		cout << "k: " << *k << endl;
@@ -317,7 +317,7 @@ public:
 		complex* a = new complex();
 		a->setRandom(1,10);
 		input1.pushBack(*a);
-		DFTcalculator::calculateFT(input1, output1, method); 
+		FTcalculator::calculateFT(input1, output1, method); 
 
 		cout << "input1: " << input1 << endl;
 		cout << "output1: " << output1 << endl;
@@ -371,8 +371,8 @@ public:
 			a->setRandom(1,10);
 			input1.pushBack(*a);
 		}
-		DFTcalculator::calculateFT(input1, outputfast, methodfast); 
-		DFTcalculator::calculateFT(input1, outputdiscrete, methoddiscrete); 
+		FTcalculator::calculateFT(input1, outputfast, methodfast); 
+		FTcalculator::calculateFT(input1, outputdiscrete, methoddiscrete); 
 
 		cout << "outputfast:" << outputfast << endl;
 		cout << "outputdiscrete:" << outputdiscrete << endl;
@@ -433,8 +433,8 @@ public:
 			ca->setRandom(1,10);
 			a.pushBack(*ca);
 		}
-		DFTcalculator::calculateFT(a, b, func);
-		DFTcalculator::calculateFT(b, c, inversefunc);
+		FTcalculator::calculateFT(a, b, func);
+		FTcalculator::calculateFT(b, c, inversefunc);
 
 		cout << "a: " << a << endl;
 		cout << "b = F(a): " << b << endl;
@@ -491,7 +491,7 @@ public:
 		double inputnorm = sum;
 
 		//transformamos...
-		DFTcalculator::calculateFT(input, output, method);
+		FTcalculator::calculateFT(input, output, method);
 		
 		//calculamos la norma2 de output:
 		sum=0;
@@ -529,19 +529,19 @@ public:
 		//Dependiendo que ingreso el usuario hago una cosa u otra
 		if(method == "dft"){
 			//Calculo la DFT
-			DFTcalculator::calculateDFT(data,result); 
+			FTcalculator::calculateDFT(data,result); 
 		}
 		else if(method == "idft"){
 			//Calculo la DFT
-			DFTcalculator::calculateiDFT(data,result); 
+			FTcalculator::calculateiDFT(data,result); 
 		}
 		else if(method == "fft"){
 			//Calculo la FFT
-			DFTcalculator::calculateFFT(data,result); 
+			FTcalculator::calculateFFT(data,result); 
 		}
 		else if(method == "ifft"){
 			//Calculo la iFFT
-			DFTcalculator::calculateiFFT(data,result); 
+			FTcalculator::calculateiFFT(data,result); 
 		}
 		//Imprimo el resultado
 		std::ostringstream stream;
