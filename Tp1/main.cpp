@@ -7,16 +7,15 @@
 
 #include <cstdlib>
 #include "vector.h"
-#include "complex.cc"
+#include "complex.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <sstream>  
 #include <cmath>
-#include "cmdline.cc"
-#include "DFTcalculator.h"
+#include "cmdline.h"
+#include "FTcalculator.h"
 #include <ctime>
-//#include "libs/plog/Log.h"
 
 using namespace std;
 
@@ -94,7 +93,15 @@ int main(int argc, char** argv) {
     //Leo las opciones con las que me ejecutan el programa
     cmdline cmdl(options);	
     cmdl.parse(argc, argv);
-    
+
+	if (method!="fft" && method!="ifft" && method!="dft" && method!="idft")
+	{
+		cout << "Invalid -m argument! Should be one of the following: dft, idft, fft, ifft" << endl;
+		exit(-1);
+	}
+
+
+
     //Leo la información del stream de entrada linea por linea
     string line;
     while(getline(*is,line)){
@@ -114,19 +121,19 @@ int main(int argc, char** argv) {
         //Dependiendo que ingreso el usuario hago una cosa u otra
         if(method == "dft"){
             //Calculo la DFT
-            DFTcalculator::calculateDFT(data,result); 
+            FTcalculator::calculateDFT(data,result); 
         }
         else if(method == "idft"){
             //Calculo la DFT
-            DFTcalculator::calculateiDFT(data,result); 
+            FTcalculator::calculateiDFT(data,result); 
         }
         else if(method == "fft"){
             //Calculo la FFT
-            DFTcalculator::calculateFFT(data,result); 
+            FTcalculator::calculateFFT(data,result); 
         }
         else if(method == "ifft"){
             //Calculo la iFFT
-            DFTcalculator::calculateiFFT(data,result); 
+            FTcalculator::calculateiFFT(data,result); 
         }
 
         //Imprimo el resultado
@@ -136,20 +143,8 @@ int main(int argc, char** argv) {
 		stream << result;
 		std::string str =  stream.str();
 		const char* chr = str.c_str();
-		cout << "Ouput:" << str;
-
-		//imprimo data y result.
-		cout << "Longitud vector data: " << data.length() << endl;
-		cout << "Longitud vector result: " << result.length() << endl;
-		cout << "data: " << data << endl;
-		cout << "result: " << result << endl;
-
     }
     return 0;
 }
 
 
-    /*
-    
-     * //43228000
-    */ 
