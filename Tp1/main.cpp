@@ -61,25 +61,30 @@ static void opt_output(string const &arg){
 }
 
 static void opt_help(string const &arg){
-	cout << endl;
-	cout << "cmdline [-m \"dft\" \"idft\" \"fft\" \"ifft\"] [-i file] [-o file]" << endl;
-	cout << endl;
+    cout << endl;
+    cout << "cmdline [-m \"dft\" \"idft\" \"fft\" \"ifft\"] [-i file] [-o file]" << endl;
+    cout << endl;
     cout << "The default input output are the standard IO.";
     cout << "The default method is the discrete fast fourier transform (fft).";
-	cout << endl;
+    cout << endl;
     exit(0);
 }
 
 static void opt_method(string const &arg){
+    if (arg!="fft" && arg!="ifft" && arg!="dft" && arg!="idft")
+    {
+        cout << "Invalid -m argument! Should be one of the following: dft, idft, fft, ifft" << endl;
+        abort();
+    }
     method = arg;
 }
 
 static option_t options[] = {
-	{1, "i", "input", "-", opt_input, OPT_DEFAULT},
-	{1, "o", "output", "-", opt_output, OPT_DEFAULT},
-	{1, "m", "method", "fft", opt_method, OPT_DEFAULT},
-	{0, "h", "help", NULL, opt_help, OPT_DEFAULT},
-	{0, },
+    {1, "i", "input", "-", opt_input, OPT_DEFAULT},
+    {1, "o", "output", "-", opt_output, OPT_DEFAULT},
+    {1, "m", "method", "fft", opt_method, OPT_DEFAULT},
+    {0, "h", "help", NULL, opt_help, OPT_DEFAULT},
+    {0, },
 };
 
 /**
@@ -93,13 +98,6 @@ int main(int argc, char** argv) {
     //Leo las opciones con las que me ejecutan el programa
     cmdline cmdl(options);	
     cmdl.parse(argc, argv);
-
-	if (method!="fft" && method!="ifft" && method!="dft" && method!="idft")
-	{
-		cout << "Invalid -m argument! Should be one of the following: dft, idft, fft, ifft" << endl;
-		exit(-1);
-	}
-
 
 
     //Leo la información del stream de entrada linea por linea

@@ -1,14 +1,17 @@
 #include <iostream>
 #include <cmath>
 #include <stdlib.h>
+#include "complex.h"
 
 using namespace std;
+
 
 double fRand(double fMin, double fMax)
 {
     double f = (double)rand() / RAND_MAX;
     return fMin + f * (fMax - fMin);
 }
+
 
 complex::complex() : re_(0), im_(0) {}
 
@@ -131,7 +134,6 @@ ostream & operator<<(ostream &os, const complex &c){
 
 istream & operator>>(istream &is, complex &c) {
     int good = false;
-    int bad  = false;
     double re = 0;
     double im = 0;
     char ch = 0;
@@ -139,21 +141,24 @@ istream & operator>>(istream &is, complex &c) {
     if (is >> ch && ch == '(') {
         if (is >> re && is >> ch && ch == ',' && is >> im && is >> ch
             && ch == ')')
-                good = true;
+            good = true;
         else
-                bad = true;
+            good = false;
     } else if (is.good()) {
         is.putback(ch);
         if (is >> re)
-                good = true;
+            good = true;
         else
-                bad = true;
+            good = false;
     }
 
-    if (good)
-        c.re_ = re, c.im_ = im;
-    if (bad)
-        is.clear(ios::badbit);
+    if (good){
+        c.re_ = re, c.im_ = im;   
+    }
+    else {
+        cout << "There was an error reading the input, please verify it and try again." << endl;
+        abort();   
+    }
 
     return is;
 }
