@@ -154,10 +154,14 @@ istream & operator>>(istream &is, complex &c) {
 
     if (good){
         c.re_ = re, c.im_ = im;   
+        is.clear(ios::goodbit);
     }
-    else {
-        cout << "There was an error reading the input, please verify it and try again." << endl;
-        abort();   
+    else if(ch == '\0'){
+        is.clear(ios::eofbit);
+    }
+    else
+    {
+        is.clear(ios::badbit);
     }
 
     return is;

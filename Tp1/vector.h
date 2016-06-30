@@ -220,8 +220,11 @@ class vector{
          */
         friend std::istream &operator>>(std::istream & is,vector<T> & vector){
             T aux;
-            for(int i = 0 ; is >> aux ; i++){
-                vector.pushBack(aux);
+            for(int i = 0 ; is.good() ; i++){
+                is >> aux;
+                if(!is.eof() && is.good()){
+                    vector.pushBack(aux);
+                }
             }
             return is;
         }

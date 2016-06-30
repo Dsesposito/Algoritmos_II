@@ -112,35 +112,40 @@ int main(int argc, char** argv) {
        
         istringstream iss(line);
         iss >> data;
-        
-        *os << std::setprecision(2);
-        *os << std::fixed;
-        
-        //Dependiendo que ingreso el usuario hago una cosa u otra
-        if(method == "dft"){
-            //Calculo la DFT
-            FTcalculator::calculateDFT(data,result); 
-        }
-        else if(method == "idft"){
-            //Calculo la DFT
-            FTcalculator::calculateiDFT(data,result); 
-        }
-        else if(method == "fft"){
-            //Calculo la FFT
-            FTcalculator::calculateFFT(data,result); 
-        }
-        else if(method == "ifft"){
-            //Calculo la iFFT
-            FTcalculator::calculateiFFT(data,result); 
-        }
+        if(!iss.bad()){
+                    
+            *os << std::setprecision(2);
+            *os << std::fixed;
 
-        //Imprimo el resultado
-        *os << result;
+            //Dependiendo que ingreso el usuario hago una cosa u otra
+            if(method == "dft"){
+                //Calculo la DFT
+                FTcalculator::calculateDFT(data,result); 
+            }
+            else if(method == "idft"){
+                //Calculo la DFT
+                FTcalculator::calculateiDFT(data,result); 
+            }
+            else if(method == "fft"){
+                //Calculo la FFT
+                FTcalculator::calculateFFT(data,result); 
+            }
+            else if(method == "ifft"){
+                //Calculo la iFFT
+                FTcalculator::calculateiFFT(data,result); 
+            }
 
-		std::ostringstream stream;
-		stream << result;
-		std::string str =  stream.str();
-		const char* chr = str.c_str();
+            //Imprimo el resultado
+            *os << result;
+
+            std::ostringstream stream;
+            stream << result;
+            std::string str =  stream.str();
+            const char* chr = str.c_str();
+        }
+        else{
+            *os << "There was an error reading the input, please verify it and try again." << endl;
+        }
     }
     return 0;
 }
